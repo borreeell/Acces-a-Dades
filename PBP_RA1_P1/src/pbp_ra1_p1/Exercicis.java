@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pbp_ra1_p1;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -132,6 +131,23 @@ public class Exercicis {
         } catch(IOException e) {
             System.out.println("Error creant l'arxiu: " + e);
         }
+    }
+
+    public static void exercici7() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Entra l'adreça d'un fitxer: ");
+        String adrecaFitxer = sc.next();
+        File f = new File(adrecaFitxer);
+
+        if (f.isFile()) {
+            System.out.println("Nom: " + f.getName());
+            System.out.println("Path: " + f.getPath());
+            System.out.println("Longitud: " + f.length() + " bytes");
+        } else {
+            System.out.println("El fitxer no existeix\n");
+        }
+
+        sc.close();
     }
 
     public static String generaNomAleatori() {

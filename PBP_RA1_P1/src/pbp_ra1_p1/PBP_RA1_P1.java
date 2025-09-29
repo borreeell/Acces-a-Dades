@@ -2,7 +2,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pbp_ra1_p1;
 
 import java.util.Scanner;
 
@@ -33,13 +32,14 @@ public class PBP_RA1_P1 {
 
     private static void menu() {
         System.out.println("**********************");
-        System.out.println("******* MENÚ *********");
+        System.out.println("******* MENÚ - Pau Borrell *********");
         System.out.println("1.- Comprova fitxers");
         System.out.println("2.- Llista d'arxius");
         System.out.println("3.- Crear arxiu TXT");
         System.out.println("4.- Mostrar contingut");
         System.out.println("5.- Crear directori i arxiu");
-        System.out.println("6.- Sortir");
+        System.out.println("6.- Exercici 7");
+        System.out.println("7.- Sortir");
         System.out.println("**********************");
     }
     
@@ -65,6 +65,8 @@ public class PBP_RA1_P1 {
                 Exercicis.exercici6();
                 break;
             case 6:
+                Exercicis.exercici7();
+            case 7:
                 break;
             default:
                 break;
