@@ -6,7 +6,6 @@
 package pbp_ra1_p2;
 
 import java.io.FileWriter;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -22,24 +21,23 @@ public class PBP_RA1_P2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //Scanner scContinuar = new Scanner(System.in);
+        int opcio = 0;
 
-        //escriureUsuariContrasenya();
+        System.out.println("**********************");
+        System.out.println("******* MENÚ *********");
+        System.out.println("1. Registrar usuaris");
+        System.out.println("2. Log In");
+        System.out.println("**********************");
 
-        //System.out.println("Vols fer Log In? (s/n): ");
-        String continuar = "s";
-
-        if (continuar == "s") {
-            try {
-                validarUsuariContrasenya("nom usuaris.txt", "usuari1", "1234");
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-        } else {
-            System.exit(0);
+        switch (opcio) {
+            case 1:
+                escriureUsuariContrasenya();
+                break;
+            case 2:
+                
+            default:
+                break;
         }
-
-        //scContinuar.close();
     }
 
     public static void escriureUsuariContrasenya() {
@@ -71,7 +69,7 @@ public class PBP_RA1_P2 {
         }
     }
 
-    public static void validarUsuariContrasenya(String fitxer, String usuari, String contrasenya) {
+    public static boolean validarUsuariContrasenya(String fitxer, String usuari, String contrasenya) {
         try {
             List<String> linies = Files.readAllLines(Paths.get(fitxer));
 
@@ -83,14 +81,13 @@ public class PBP_RA1_P2 {
                     String c = parts[1].trim();
 
                     if (u.equals(usuari) && c.equals(contrasenya)) {
-                        System.out.println("Log In correcte");
-                    } else {
-                        System.out.println("Log In Incorrecte");
+                        return true;
                     }
                 }
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.out.println("Error: " + e);
         }
+        return false;
     }
 }
