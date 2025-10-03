@@ -24,3 +24,7 @@ hs_err_pid*
 replay_pid*
 /PBP-RA1-P2/nbproject/private/
 /PBP_RA1_P2/nbproject/private/
+
+# arxius de les execucions
+nom usuaris.txt
+usuaris.txt
