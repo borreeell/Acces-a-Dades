@@ -27,6 +27,7 @@ replay_pid*
 
 # arxius de les execucions
 # P1
+directori/*
 arxiu-terminal.txt
 arxiu.txt
 arxiuPdf.pdf

@@ -44,7 +44,7 @@ public class Exercicis {
     public static void exercici4() {
         try {
             // Creem els dos arxius
-            FileWriter fw = new FileWriter("./arxiu.txt");
+            FileWriter fw = new FileWriter("arxiu.txt");
             FileWriter fwUser = new FileWriter("arxiu-terminal.txt");
 
             // Llegim el text a escriure al segon arxiu
