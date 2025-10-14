@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jugadors>
+    <jugador>
+        <nom></nom>
+        <nivell></nivell>
+        <copes></copes>
+        <or></or>
+        <gems></gems>
+        <estrelles></estrelles>
+
+        <partides>
+            <partida>
+                <data></data>
+                <resultat></resultat>
+                <durada></durada>
+                <tipus></tipus>
+            </partida>
+            <partida>
+                <data></data>
+                <resultat></resultat>
+                <durada></durada>
+                <tipus></tipus>
+            </partida>
+            <partida>
+                <data></data>
+                <resultat></resultat>
+                <durada></durada>
+                <tipus></tipus>
+            </partida>
+        </partides>
+    </jugador>
+
+    <jugador>
+        <nom></nom>
+        <nivell></nivell>
+        <copes></copes>
+        <or></or>
+        <gems></gems>
+        <estrelles></estrelles>
+
+        <partides>
+            <partida>
+                <data></data>
+                <resultat></resultat>
+                <durada></durada>
+                <tipus></tipus>
+            </partida>
+            <partida>
+                <data></data>
+                <resultat></resultat>
+                <durada></durada>
+                <tipus></tipus>
+            </partida>
+            <partida>
+                <data></data>
+                <resultat></resultat>
+                <durada></durada>
+                <tipus></tipus>
+            </partida>
+        </partides>
+    </jugador>
+
+    <jugador>
+        <nom></nom>
+        <nivell></nivell>
+        <copes></copes>
+        <or></or>
+        <gems></gems>
+        <estrelles></estrelles>
+
+        <partides>
+            <partida>
+                <data></data>
+                <resultat></resultat>
+                <durada></durada>
+                <tipus></tipus>
+            </partida>
+            <partida>
+                <data></data>
+                <resultat></resultat>
+                <durada></durada>
+                <tipus></tipus>
+            </partida>
+            <partida>
+                <data></data>
+                <resultat></resultat>
+                <durada></durada>
+                <tipus></tipus>
+            </partida>
+        </partides>
+    </jugador>
+</jugadors>
