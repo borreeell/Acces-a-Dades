@@ -4,7 +4,7 @@
         <nom>Player1</nom>
         <nivell>13</nivell>
         <copes>5200</copes>
-        <oro>15000</oro>
+        <or>15000</or>
         <gems>120</gems>
         <estrelles>5</estrelles>
         <partides>
@@ -33,7 +33,7 @@
         <nom>Player2</nom>
         <nivell>11</nivell>
         <copes>4100</copes>
-        <oro>8700</oro>
+        <or>8700</or>
         <gems>300</gems>
         <estrelles>4</estrelles>
         <partides>
@@ -62,7 +62,7 @@
         <nom>Player3</nom>
         <nivell>10</nivell>
         <copes>3500</copes>
-        <oro>5600</oro>
+        <or>5600</or>
         <gems>80</gems>
         <estrelles>3</estrelles>
         <partides>
