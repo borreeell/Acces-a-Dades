@@ -1,6 +1,6 @@
 # Accés a Dades
 
-Aquest repositori conté el les practiques de l'assignatura d'**Accés a Dades**, fetes utilitzant Java.
+Aquest repositori conté les practiques de l'assignatura d'**Accés a Dades** de **1r CFGS - DAM**, fetes utilitzant Java.
 
 ## Llistat de practiques
   1. Consulta, creacio i modificacio de fitxers.
