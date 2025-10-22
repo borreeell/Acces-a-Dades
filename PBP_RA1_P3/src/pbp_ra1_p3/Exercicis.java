@@ -1,38 +1,58 @@
 package pbp_ra1_p3;
 
 import java.io.File;
+import java.util.Scanner;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.*;
 
 public class Exercicis {
+    /**
+     * Obre i llegeix un fitxer XML
+     * @param fitxerXML Ruta del fitxer XML a llegir
+     * @return Objecte document representant el fitxer llegit
+     * @throws Exception Si hi ha algun error durant l'execucio
+     */
     public static Document obrirFitxerXML(String fitxerXML) throws Exception {
+        // Crea un objecte file amb la ruta al fitxer
         File fxml = new File(fitxerXML);
 
+        // Crea una nova instancia de DocumentBuilderFactory
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        
+        // Crea un nou DocumentBuilder utilitzant el dbFactory creat abans
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+        
+        // Llegeix el fitxer XML i crea un objecte Document amb el contingut
         Document doc = (Document) dBuilder.parse(fxml);
 
+        // Normalitza el text del document (si no ho fessim retornaria caracters extranys)
         doc.getDocumentElement().normalize();
 
+        // Retorna el contingut del document normalitzat
         return doc;
     }
 
-    public static void practica3_1() {
+    public static void practica3_1(Scanner scanner) {
         try {
-            // Creem l'objecte File amb el fitxer XML a llegir
+            // Obrim el fitxer XML amb les dades dels jugadors
             Document doc = obrirFitxerXML("PBP_RA1_P3\\clash.xml");
 
             // Normalitzem el document (per eliminar espais i nodes buits)
             doc.getDocumentElement().normalize();
 
-            // Mostrem l'element arrel (jugadors)
-            //System.out.println("Arrel: " + doc.getDocumentElement().getNodeName());
+            // Demanem a l'usuari el nom del jugador que vol cercar
+            System.out.print("Introdueix el nom del jugador: ");
+            String nomCercat = scanner.nextLine();
+
             System.out.println("------------------------------------");
 
-            // Agafem tots els elements "jugador"
+            // Obtenim la llista de tots els jugadors del document XML
             NodeList llistaJugadors = doc.getElementsByTagName("jugador");
+
+            // Variable per controlar si hem trobat el jugador
+            boolean jugadorTrobat = false;
 
             // Recorrem tots els jugadors
             for (int i = 0; i < llistaJugadors.getLength(); i++) {
@@ -41,37 +61,50 @@ public class Exercicis {
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element jugador = (Element) node;
 
-                    System.out.println("Nom: " + jugador.getElementsByTagName("nom").item(0).getTextContent()); 
-                    System.out.println("Nivell: " + jugador.getElementsByTagName("nivell").item(0).getTextContent());
-                    System.out.println("Copes: " + jugador.getElementsByTagName("copes").item(0).getTextContent());
-                    System.out.println("Or: " + jugador.getElementsByTagName("or").item(0).getTextContent());
-                    System.out.println("Gems: " + jugador.getElementsByTagName("gems").item(0).getTextContent());
-                    System.out.println("Estrelles: " + jugador.getElementsByTagName("estrelles").item(0).getTextContent() + "\n");
+                    // Obtenim el nom del jugador actual
+                    String nomJugador = jugador.getElementsByTagName("nom").item(0).getTextContent();
 
-                    System.out.println("---- Ultimes 3 partides: ----");
+                    // Comprovem si coincideix amb el nom cercat
+                    if (nomJugador.equalsIgnoreCase(nomCercat)) {
+                        jugadorTrobat = true;
 
-                    // Llegim les partides del jugador
-                    NodeList partides = jugador.getElementsByTagName("partida");
+                        System.out.println("Nom: " + nomJugador); 
+                        System.out.println("Nivell: " + jugador.getElementsByTagName("nivell").item(0).getTextContent());
+                        System.out.println("Copes: " + jugador.getElementsByTagName("copes").item(0).getTextContent());
+                        System.out.println("Or: " + jugador.getElementsByTagName("or").item(0).getTextContent());
+                        System.out.println("Gems: " + jugador.getElementsByTagName("gems").item(0).getTextContent());
+                        System.out.println("Estrelles: " + jugador.getElementsByTagName("estrelles").item(0).getTextContent() + "\n");
 
-                    // Recorrem les partides
-                    for (int j = 0; j < partides.getLength(); j++) {
-                        Node partidaNode = partides.item(j);
+                        System.out.println("---- Ultimes 3 partides: ----");
 
-                        if (partidaNode.getNodeType() == Node.ELEMENT_NODE) {
-                            Element partida = (Element) partidaNode;
+                        // Llegim les partides del jugador
+                        NodeList partides = jugador.getElementsByTagName("partida");
 
-                            // Mostrem les dades de cada partida
-                            System.out.println("Data: " + partida.getElementsByTagName("data").item(0).getTextContent());
-                            System.out.println("Resultat: " + partida.getElementsByTagName("resultat").item(0).getTextContent());
-                            System.out.println("Duracio: " + partida.getElementsByTagName("durada").item(0).getTextContent());
-                            System.out.println("Tipus: " + partida.getElementsByTagName("tipus").item(0).getTextContent());
-                            System.out.println("---------------------------");
+                        // Recorrem les partides
+                        for (int j = 0; j < partides.getLength(); j++) {
+                            Node partidaNode = partides.item(j);
+
+                            if (partidaNode.getNodeType() == Node.ELEMENT_NODE) {
+                                Element partida = (Element) partidaNode;
+
+                                // Mostrem les dades de cada partida
+                                System.out.println("Data: " + partida.getElementsByTagName("data").item(0).getTextContent());
+                                System.out.println("Resultat: " + partida.getElementsByTagName("resultat").item(0).getTextContent());
+                                System.out.println("Duracio: " + partida.getElementsByTagName("durada").item(0).getTextContent());
+                                System.out.println("Tipus: " + partida.getElementsByTagName("tipus").item(0).getTextContent());
+                                System.out.println("---------------------------");
+                            }
                         }
-                    }
 
-                    System.out.println(); // Linia en blanc entre jugadors
+                        break; // Sortim del bucle un cop trobat el jugador
+                    }
                 }
             }
+
+            if (!jugadorTrobat) {
+                System.out.println("No s'ha trobat cap jugador amb el nom: " + nomCercat);
+            }
+
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }

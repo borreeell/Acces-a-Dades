@@ -15,17 +15,19 @@ public class PBP_RA1_P3 {
 
         menu();
 
-        while (opcio != 6) {
+        while (opcio != 2) {
             System.out.println("--Escull opcio: ");
             opcio = teclat.nextInt(); // Cridem al metode nextInt per llegir el numero i guardar a opcio
+            teclat.nextLine(); // Consumir el salt de línia
 
             System.out.println("");
-            seleccio(opcio);
+            seleccio(opcio, teclat); // Executar l'exercici escollit
         }
 
         teclat.close();
     }
 
+    // Mostra el menu pel terminal
     private static void menu() {
         System.out.println("************************************");
         System.out.println("******* MENÚ - Pau Borrell *********");
@@ -34,14 +36,16 @@ public class PBP_RA1_P3 {
         System.out.println("************************************");
     }
 
-    private static void seleccio(int opcio) {
+    private static void seleccio(int opcio, Scanner teclat) {
         switch (opcio) {
             case 1:
-                Exercicis.practica3_1();
+                Exercicis.practica3_1(teclat);
                 break;
             case 2:
+                System.out.println("Sortint del programa...");
                 break;
             default:
+                System.out.println("Opció no vàlida!");
                 break;
         }
     }
