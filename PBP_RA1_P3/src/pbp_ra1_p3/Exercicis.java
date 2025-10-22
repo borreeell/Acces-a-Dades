@@ -41,7 +41,7 @@ public class Exercicis {
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element jugador = (Element) node;
 
-                    System.out.println("Nom: " + jugador.getElementsByTagName("nom").item(0).getTextContent());
+                    System.out.println("Nom: " + jugador.getElementsByTagName("nom").item(0).getTextContent()); 
                     System.out.println("Nivell: " + jugador.getElementsByTagName("nivell").item(0).getTextContent());
                     System.out.println("Copes: " + jugador.getElementsByTagName("copes").item(0).getTextContent());
                     System.out.println("Or: " + jugador.getElementsByTagName("or").item(0).getTextContent());
