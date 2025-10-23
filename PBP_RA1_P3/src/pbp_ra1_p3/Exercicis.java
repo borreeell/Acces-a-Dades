@@ -39,9 +39,6 @@ public class Exercicis {
             // Obrim el fitxer XML amb les dades dels jugadors
             Document doc = obrirFitxerXML("PBP_RA1_P3\\clash.xml");
 
-            // Normalitzem el document (per eliminar espais i nodes buits)
-            doc.getDocumentElement().normalize();
-
             // Demanem a l'usuari el nom del jugador que vol cercar
             System.out.print("Introdueix el nom del jugador: ");
             String nomCercat = scanner.nextLine();
@@ -65,7 +62,7 @@ public class Exercicis {
                     String nomJugador = jugador.getElementsByTagName("nom").item(0).getTextContent();
 
                     // Comprovem si coincideix amb el nom cercat
-                    if (nomJugador.equalsIgnoreCase(nomCercat)) {
+                    if (nomJugador.equals(nomCercat)) {
                         jugadorTrobat = true;
 
                         System.out.println("Nom: " + nomJugador); 
