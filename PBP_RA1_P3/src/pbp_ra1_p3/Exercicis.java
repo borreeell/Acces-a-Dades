@@ -1,6 +1,7 @@
 package pbp_ra1_p3;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -34,10 +35,10 @@ public class Exercicis {
         return doc;
     }
 
-    public static void practica3_1(Scanner scanner) {
+    public static void exercici1(Scanner scanner) {
         try {
             // Obrim el fitxer XML amb les dades dels jugadors
-            Document doc = obrirFitxerXML("PBP_RA1_P3\\clash.xml");
+            Document doc = obrirFitxerXML("PBP_RA1_P3\\data\\clash.xml");
 
             // Demanem a l'usuari el nom del jugador que vol cercar
             System.out.print("Introdueix el nom del jugador: ");
@@ -105,5 +106,29 @@ public class Exercicis {
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
+    }
+
+    public static void exercici2() {
+        ArrayList<Jugador> jugadors = new ArrayList<>();
+
+        try {
+
+
+            if (jugadors.isEmpty()) {
+                System.out.println("No s'han trobat jugadors");
+                return;
+            }
+
+
+            System.out.println("Jugador amb mes copes: ");
+            System.out.println("Nom: " );
+            System.out.println("Copes: " );
+        } catch (Exception e) {
+            System.out.println("Hi ha hagut un error: " + e);
+        }
+    }
+
+    public static void exercici3() {
+        
     }
 }

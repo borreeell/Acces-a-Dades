@@ -32,16 +32,24 @@ public class PBP_RA1_P3 {
         System.out.println("************************************");
         System.out.println("******* MENÚ - Pau Borrell *********");
         System.out.println("1.- Llegir dades jugadors i partides");
-        System.out.println("2.- Sortir");
+        System.out.println("2.- Jugador amb mes copes");
+        System.out.println("3.- Extreure dades meteo");
+        System.out.println("4.- Sortir");
         System.out.println("************************************");
     }
 
     private static void seleccio(int opcio, Scanner teclat) {
         switch (opcio) {
             case 1:
-                Exercicis.practica3_1(teclat);
+                Exercicis.exercici1(teclat);
                 break;
             case 2:
+                Exercicis.exercici2();
+                break;
+            case 3:
+                Exercicis.exercici3();
+                break;
+            case 4:
                 System.out.println("Sortint del programa...");
                 break;
             default:
