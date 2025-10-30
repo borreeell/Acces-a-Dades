@@ -112,17 +112,40 @@ public class Exercicis {
         ArrayList<Jugador> jugadors = new ArrayList<>();
 
         try {
+            Document doc = obrirFitxerXML("PBP_RA1_P3\\data\\clash.xml");
 
+            NodeList nodeList = doc.getElementsByTagName("jugador");
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node node = nodeList.item(i);
+
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element e = (Element) node;
+
+                    String nom = e.getElementsByTagName("nom").item(0).getTextContent();
+                    int copes = Integer.parseInt(e.getElementsByTagName("copes").item(0).getTextContent());
+
+                    Jugador j = new Jugador(nom, copes);
+                    jugadors.add(j);
+                } 
+            }
 
             if (jugadors.isEmpty()) {
                 System.out.println("No s'han trobat jugadors");
                 return;
             }
 
+            Jugador millorJugador = jugadors.get(0);
+            for (Jugador j : jugadors) {
+                if (j.copes > millorJugador.copes) {
+                    millorJugador = j;
+                }
+            }
+
 
             System.out.println("Jugador amb mes copes: ");
-            System.out.println("Nom: " );
-            System.out.println("Copes: " );
+            System.out.println("Nom: " + millorJugador.nom);
+            System.out.println("Copes: " + millorJugador.copes);
         } catch (Exception e) {
             System.out.println("Hi ha hagut un error: " + e);
         }
