@@ -152,6 +152,75 @@ public class Exercicis {
     }
 
     public static void exercici3() {
-        
+        try {
+            // Rutes dels fitxers amb les dades meteorologiques
+            String[] fitxers = {
+                "PBP_RA1_P3\\data\\meteo2015.xml",
+                "PBP_RA1_P3\\data\\meteo2016.xml",
+                "PBP_RA1_P3\\data\\meteo2017.xml"          
+            };
+
+            // Recorrem tots els fitxers meteorologics
+            for (String fitxer : fitxers) {
+                // Obrim el fitxer
+                Document doc = obrirFitxerXML(fitxer);
+
+                // Obtenim una llista de tots els elements <element>
+                NodeList llista = doc.getElementsByTagName("element");
+
+                // Variables per guardar les dades dels fitxers
+                double tmaxGlobal = Double.NEGATIVE_INFINITY;
+                double tminGlobal = Double.POSITIVE_INFINITY;
+                String dataTmax = "";
+                String horaTmax = "";
+                String dataTmin = "";
+                String horaTmin = "";
+
+                // Recorrem tots els elements del fitxer
+                for (int i = 0; i < llista.getLength(); i++) {
+                    Node node = llista.item(i);
+
+                    if (node.getNodeType() == Node.ELEMENT_NODE) {
+                        Element e = (Element) node;
+
+                        String data = e.getElementsByTagName("fecha").item(0).getTextContent();
+                        String horatmax = e.getElementsByTagName("horatmax").item(0).getTextContent();
+                        String horatmin = e.getElementsByTagName("horatmin").item(0).getTextContent();
+
+                        // Els valors poden tenir comes, aixi que els substituim per punts abans de parsejar
+                        double tmax = Double.parseDouble(
+                            e.getElementsByTagName("tmax").item(0).getTextContent().replace(",", ".")
+                        );
+
+                        double tmin = Double.parseDouble(
+                            e.getElementsByTagName("tmin").item(0).getTextContent().replace(",", ".")
+                        );
+
+                        // Actualitzem maxim i minim si cal
+                        if (tmax > tmaxGlobal) {
+                            tmaxGlobal = tmax;
+                            dataTmax = data;
+                            horaTmax = horatmax;
+                        }
+
+                        if (tmin > tminGlobal) {
+                            tminGlobal = tmin;
+                            dataTmin = data;
+                            horaTmin = horatmin;
+                        }
+                    }
+                }
+                
+                // Mostrem els resultats
+                System.out.println("./" + new File(fitxer).getName());
+                System.out.println("Tmax [" + dataTmax + horaTmax + " ] = " + tmaxGlobal);
+                System.out.println("Tmin [" + dataTmin + horaTmin + " ] = " + tminGlobal);
+                System.out.println();
+            }
+
+        } catch (Exception e) {
+            System.out.println("Hi ha hagut un error: " + e);
+        }
+
     }
 }
