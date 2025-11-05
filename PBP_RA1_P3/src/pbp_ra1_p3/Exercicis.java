@@ -109,40 +109,52 @@ public class Exercicis {
     }
 
     public static void exercici2() {
+        // Creem una llista per emmagatzemar els jugadors
         ArrayList<Jugador> jugadors = new ArrayList<>();
 
         try {
+            // Obrim i parsejem el fitxer XML que conte les dades dels jugadors
             Document doc = obrirFitxerXML("PBP_RA1_P3\\data\\clash.xml");
 
+            // Obtenim tots els elements amb l'etiqueta "jugador"
             NodeList nodeList = doc.getElementsByTagName("jugador");
 
+            // Recorrem tots els nodes de jugadors trobats
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
 
+                // Comprovem que el node sigui un element (no text o comentari)
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element e = (Element) node;
 
                     String nom = e.getElementsByTagName("nom").item(0).getTextContent();
                     int copes = Integer.parseInt(e.getElementsByTagName("copes").item(0).getTextContent());
 
+                    // Creem un objecte jugador amb les dades extretes
                     Jugador j = new Jugador(nom, copes);
+
+                    // Afegim el jugador a la llista
                     jugadors.add(j);
                 } 
             }
 
+            // Comprovem si s'han trobat jugadors al fitxer
             if (jugadors.isEmpty()) {
                 System.out.println("No s'han trobat jugadors");
                 return;
             }
 
+            // Inicialitzem el jugador com el primer de la llista
             Jugador millorJugador = jugadors.get(0);
+
+            // Recorrem tots els jugadors per trobar el que te mes copes
             for (Jugador j : jugadors) {
                 if (j.copes > millorJugador.copes) {
                     millorJugador = j;
                 }
             }
 
-
+            // Mostrem per pantalla les dades del jugador amb mes copes
             System.out.println("Jugador amb mes copes: ");
             System.out.println("Nom: " + millorJugador.nom);
             System.out.println("Copes: " + millorJugador.copes);
@@ -171,10 +183,8 @@ public class Exercicis {
                 // Variables per guardar les dades dels fitxers
                 double tmaxGlobal = Double.NEGATIVE_INFINITY;
                 double tminGlobal = Double.POSITIVE_INFINITY;
-                String dataTmax = "";
-                String horaTmax = "";
-                String dataTmin = "";
-                String horaTmin = "";
+                String dataTmax = "", horaTmax = "";
+                String dataTmin = "", horaTmin = "";
 
                 // Recorrem tots els elements del fitxer
                 for (int i = 0; i < llista.getLength(); i++) {
@@ -183,18 +193,22 @@ public class Exercicis {
                     if (node.getNodeType() == Node.ELEMENT_NODE) {
                         Element e = (Element) node;
 
-                        String data = e.getElementsByTagName("fecha").item(0).getTextContent();
-                        String horatmax = e.getElementsByTagName("horatmax").item(0).getTextContent();
-                        String horatmin = e.getElementsByTagName("horatmin").item(0).getTextContent();
+                        String data = getTextSafe(e, "fecha");
+                        String horatmax = getTextSafe(e, "horatmax");
+                        String horatmin = getTextSafe(e, "horatmin");
+                        String tmaxStr = getTextSafe(e, "tmax");
+                        String tminStr = getTextSafe(e, "tmin");
+
+                        if (tmaxStr.isEmpty() || tminStr.isEmpty() || data.isEmpty()) {
+                            System.out.println("Dada incompleta el: " + data + " - s'omet");
+                            continue;
+                        }
 
                         // Els valors poden tenir comes, aixi que els substituim per punts abans de parsejar
-                        double tmax = Double.parseDouble(
-                            e.getElementsByTagName("tmax").item(0).getTextContent().replace(",", ".")
-                        );
+                        double tmax = Double.parseDouble(tmaxStr.replace(",", "."));
 
-                        double tmin = Double.parseDouble(
-                            e.getElementsByTagName("tmin").item(0).getTextContent().replace(",", ".")
-                        );
+                        double tmin = Double.parseDouble(tminStr.replace(",", "."));
+
 
                         // Actualitzem maxim i minim si cal
                         if (tmax > tmaxGlobal) {
@@ -203,7 +217,7 @@ public class Exercicis {
                             horaTmax = horatmax;
                         }
 
-                        if (tmin > tminGlobal) {
+                        if (tmin < tminGlobal) {
                             tminGlobal = tmin;
                             dataTmin = data;
                             horaTmin = horatmin;
@@ -213,14 +227,22 @@ public class Exercicis {
                 
                 // Mostrem els resultats
                 System.out.println("./" + new File(fitxer).getName());
-                System.out.println("Tmax [" + dataTmax + horaTmax + " ] = " + tmaxGlobal);
-                System.out.println("Tmin [" + dataTmin + horaTmin + " ] = " + tminGlobal);
-                System.out.println();
+                System.out.println("Tmax [" + dataTmax + " " + horaTmax + "] = " + tmaxGlobal);
+                System.out.println("Tmin [" + dataTmin + " " + horaTmin + "] = " + tminGlobal);
+                System.out.println("\n");
             }
 
         } catch (Exception e) {
             System.out.println("Hi ha hagut un error: " + e);
         }
 
+    }
+
+    private static String getTextSafe(Element e, String tag) {
+        NodeList list = e.getElementsByTagName(tag);
+
+        if (list == null || list.getLength() == 0 || list.item(0) == null) return "";
+
+        return list.item(0).getTextContent().trim().replace(",", ".");
     }
 }
