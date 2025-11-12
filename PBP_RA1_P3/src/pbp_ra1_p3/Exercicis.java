@@ -1,20 +1,25 @@
 package pbp_ra1_p3;
 
 import java.io.File;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.*;
 
 public class Exercicis {
-    /**
-     * Obre i llegeix un fitxer XML
-     * @param fitxerXML Ruta del fitxer XML a llegir
-     * @return Objecte document representant el fitxer llegit
-     * @throws Exception Si hi ha algun error durant l'execucio
-     */
     public static Document obrirFitxerXML(String fitxerXML) throws Exception {
         // Crea un objecte file amb la ruta al fitxer
         File fxml = new File(fitxerXML);
@@ -35,7 +40,51 @@ public class Exercicis {
         return doc;
     }
 
-    public static void exercici1(Scanner scanner) {
+    private static Element createElement(Document doc, String etiqueta, String valor) {
+        Element e = doc.createElement(etiqueta);
+        e.setTextContent(valor);
+        return e;
+    }
+
+    private static void afegirPartida(Element jugador, Document doc, String data, String resultat, String durada, String tipus) {
+        Element partides;
+        NodeList llistaPartides = jugador.getElementsByTagName("partides");
+
+        if (llistaPartides.getLength() == 0) {
+            partides = doc.createElement("partides");
+            jugador.appendChild(partides);
+        } else {
+            partides = (Element) llistaPartides.item(0);
+        }
+
+        Element partida = doc.createElement("partida");
+        partida.appendChild(createElement(doc,"data", data));
+        partida.appendChild(createElement(doc, "resultat", resultat));
+        partida.appendChild(createElement(doc, "durada", durada));
+        partida.appendChild(createElement(doc, "tipus", tipus));
+
+        partides.appendChild(partida);
+    }
+
+    private static void sumarCopes(Element jugador, int copes) {
+        Element nodeCopes = (Element) jugador.getElementsByTagName("copes").item(0);
+        int valor = Integer.parseInt(nodeCopes.getTextContent());
+        nodeCopes.setTextContent(String.valueOf(valor + copes));
+    }
+
+    private static void guardarXML(Document doc, String ruta) throws TransformerConfigurationException, TransformerException {
+        Transformer tFormer = TransformerFactory.newInstance().newTransformer();
+        
+        
+        tFormer.setOutputProperty(OutputKeys.INDENT, "yes");
+
+        Source source = new DOMSource(doc);
+        Result result = new StreamResult(new File(ruta));
+
+        tFormer.transform(source, result);
+    } 
+
+    public static void exercici2(Scanner scanner) {
         try {
             // Obrim el fitxer XML amb les dades dels jugadors
             Document doc = obrirFitxerXML("PBP_RA1_P3\\data\\clash.xml");
@@ -108,7 +157,7 @@ public class Exercicis {
         }
     }
 
-    public static void exercici2() {
+    public static void exercici3() {
         // Creem una llista per emmagatzemar els jugadors
         ArrayList<Jugador> jugadors = new ArrayList<>();
 
@@ -163,7 +212,7 @@ public class Exercicis {
         }
     }
 
-    public static void exercici3() {
+    public static void exercici4() {
         try {
             // Rutes dels fitxers amb les dades meteorologiques
             String[] fitxers = {
@@ -236,6 +285,105 @@ public class Exercicis {
             System.out.println("Hi ha hagut un error: " + e);
         }
 
+    }
+
+    public static void exercici5(Scanner teclat) {
+        try {
+            Document doc = obrirFitxerXML("PBP_RA1_P3\\data\\clash.xml");
+            Node elementRoot = doc.getDocumentElement();
+
+            // Demana a l'usuari un nom de jugador
+            System.out.println("Entra el nom del jugador: ");
+            String nomIn = teclat.nextLine();
+
+            // Crea l'element jugador
+            Element jugador = doc.createElement("jugador");
+
+            // Afegeix els elements creats dins de jugador
+            jugador.appendChild(createElement(doc, "nom", nomIn));
+            jugador.appendChild(createElement(doc, "nivell", "1"));
+            jugador.appendChild(createElement(doc, "copes", "0"));
+            jugador.appendChild(createElement(doc, "or", "0"));
+            jugador.appendChild(createElement(doc, "gems", "0"));
+            jugador.appendChild(createElement(doc, "estrelles", "0"));
+
+            // Afegeix l'element <jugador> dins del element pare del fitxer
+            elementRoot.appendChild(jugador);
+
+            // Guarda el fitxer XML
+            guardarXML(doc, "PBP_RA1_P3\\data\\clash.xml");
+        } catch (Exception e) {
+            System.out.println("Hi ha hagut un error: " + e);
+        }
+    }
+
+    public static void exercici6(Scanner teclat) {
+        try {
+            Document doc = obrirFitxerXML("PBP_RA1_P3\\data\\clash.xml");
+
+            NodeList jugadors = doc.getElementsByTagName("jugador");
+
+            System.out.println("Quantes partides vols simular? ");
+            int numPartides = teclat.nextInt();
+            teclat.nextLine();
+
+            Random rand = new Random();
+
+            for (int partidaNum = 1; partidaNum <= numPartides; partidaNum++) {
+                // Selecciona dos jugador aleatoris
+                int idx1 = rand.nextInt(jugadors.getLength());
+                int idx2;
+
+                do {
+                    idx2 = rand.nextInt(jugadors.getLength());
+                } while (idx2 == idx1);
+
+                Element jugador1 = (Element) jugadors.item(idx1);
+                Element jugador2 = (Element) jugadors.item(idx2);
+
+                String nom1 = jugador1.getElementsByTagName("nom").item(0).getTextContent();
+                String nom2 = jugador2.getElementsByTagName("nom").item(0).getTextContent();
+
+                // Genera el resultat aleatori
+                int torres1 = rand.nextInt(4);
+                int torres2 = rand.nextInt(4);
+
+                String resultat = torres1 + "-" + torres2;
+
+                // Crea la partida per tots dos jugadors
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                String data = LocalDateTime.now().format(dtf);
+                String durada = (2 + rand.nextInt(5)) + ":" + String.format("%02d", rand.nextInt(60));
+
+                // Afegir partida a jugador1
+                afegirPartida(jugador1, doc, data, resultat, durada, "Lliga");
+
+                // Afegir partida a jugador2 amb resultat invertit
+                String resultat2 = torres2 + "-" + torres1;
+                afegirPartida(jugador2, doc, data, resultat2, durada, "Lliga");
+
+                // Actualitza copes del guanyador
+                if (torres1 > torres2) {
+                    sumarCopes(jugador1, 3);
+                } else if (torres2 > torres1) {
+                    sumarCopes(jugador2, 3);
+                }
+
+                // Suma 1 copa a tots dos en cas d'empat
+                if (torres1 == torres2) {
+                    sumarCopes(jugador1, 1);
+                    sumarCopes(jugador2, 1);
+                }
+
+                System.out.println("Partida " + partidaNum + ": " + nom1 + " vs " + nom2 + "->" + resultat);
+            }
+
+            guardarXML(doc, "PBP_RA1_P3\\data\\clash.xml");
+            System.out.println("S'han simulat " + numPartides + " partides i s'ha actualitzat el fitxer XML.");
+            
+        } catch (Exception e) {
+            System.out.println("Hi ha hagut un error: " + e);
+        }
     }
 
     private static String getTextSafe(Element e, String tag) {

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <jugadors>
     <jugador>
         <nom>Player1</nom>
@@ -28,7 +28,7 @@
             </partida>
         </partides>
     </jugador>
-
+        
     <jugador>
         <nom>Player2</nom>
         <nivell>11</nivell>
@@ -57,7 +57,7 @@
             </partida>
         </partides>
     </jugador>
-
+        
     <jugador>
         <nom>Player3</nom>
         <nivell>10</nivell>
@@ -85,5 +85,14 @@
                 <tipus>Torneig</tipus>
             </partida>
         </partides>
+    </jugador>
+    
+    <jugador>
+        <nom>pablo</nom>
+        <nivell>1</nivell>
+        <copes>0</copes>
+        <or>0</or>
+        <gems>0</gems>
+        <estrelles>0</estrelles>
     </jugador>
 </jugadors>

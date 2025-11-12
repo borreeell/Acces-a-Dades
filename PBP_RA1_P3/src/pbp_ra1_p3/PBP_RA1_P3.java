@@ -34,22 +34,30 @@ public class PBP_RA1_P3 {
         System.out.println("1.- Llegir dades jugadors i partides");
         System.out.println("2.- Jugador amb mes copes");
         System.out.println("3.- Extreure dades meteo");
-        System.out.println("4.- Sortir");
+        System.out.println("4.- Crear jugador");
+        System.out.println("5.- Simular partides");
+        System.out.println("6.- Sortir");
         System.out.println("************************************");
     }
 
     private static void seleccio(int opcio, Scanner teclat) {
         switch (opcio) {
             case 1:
-                Exercicis.exercici1(teclat);
+                Exercicis.exercici2(teclat);
                 break;
             case 2:
-                Exercicis.exercici2();
-                break;
-            case 3:
                 Exercicis.exercici3();
                 break;
+            case 3:
+                Exercicis.exercici4();
+                break;
             case 4:
+                Exercicis.exercici5(teclat);
+                break;
+            case 5:
+                Exercicis.exercici6(teclat);
+                break;
+            case 6:
                 System.out.println("Sortint del programa...");
                 break;
             default:
