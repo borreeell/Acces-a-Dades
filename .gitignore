@@ -10,7 +10,7 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
-# Package Files #
+# Package Files
 *.jar
 *.war
 *.nar
@@ -22,8 +22,6 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
-/PBP-RA1-P2/nbproject/private/
-/PBP_RA1_P2/nbproject/private/
 
 # arxius de les execucions
 # P1
@@ -35,4 +33,3 @@ arxiuPdf.pdf
 # P2
 nom usuaris.txt
 usuaris.txt
-/PBP_RA1_P3/nbproject/private/
