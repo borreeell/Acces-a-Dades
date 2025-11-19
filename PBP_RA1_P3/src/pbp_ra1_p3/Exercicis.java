@@ -59,9 +59,9 @@ public class Exercicis {
 
         Element partida = doc.createElement("partida");
         partida.appendChild(createElement(doc,"data", data));
-        partida.appendChild(createElement(doc, "resultat", resultat));
-        partida.appendChild(createElement(doc, "durada", durada));
-        partida.appendChild(createElement(doc, "tipus", tipus));
+        partida.appendChild(createElement(doc,"resultat", resultat));
+        partida.appendChild(createElement(doc,"durada", durada));
+        partida.appendChild(createElement(doc,"tipus", tipus));
 
         partides.appendChild(partida);
     }
@@ -84,14 +84,14 @@ public class Exercicis {
         tFormer.transform(source, result);
     } 
 
-    public static void exercici2(Scanner scanner) {
+    public static void exercici2(Scanner teclat) {
         try {
             // Obrim el fitxer XML amb les dades dels jugadors
-            Document doc = obrirFitxerXML("PBP_RA1_P3\\data\\clash.xml");
+            Document doc = obrirFitxerXML("PBP_RA1_P3\\clash.xml");
 
             // Demanem a l'usuari el nom del jugador que vol cercar
             System.out.print("Introdueix el nom del jugador: ");
-            String nomCercat = scanner.nextLine();
+            String nomCercat = teclat.nextLine();
 
             System.out.println("------------------------------------");
 
@@ -142,8 +142,6 @@ public class Exercicis {
                                 System.out.println("---------------------------");
                             }
                         }
-
-                        break; // Sortim del bucle un cop trobat el jugador
                     }
                 }
             }
@@ -163,7 +161,7 @@ public class Exercicis {
 
         try {
             // Obrim i parsejem el fitxer XML que conte les dades dels jugadors
-            Document doc = obrirFitxerXML("PBP_RA1_P3\\data\\clash.xml");
+            Document doc = obrirFitxerXML("PBP_RA1_P3\\clash.xml");
 
             // Obtenim tots els elements amb l'etiqueta "jugador"
             NodeList nodeList = doc.getElementsByTagName("jugador");
@@ -216,9 +214,9 @@ public class Exercicis {
         try {
             // Rutes dels fitxers amb les dades meteorologiques
             String[] fitxers = {
-                "PBP_RA1_P3\\data\\meteo2015.xml",
-                "PBP_RA1_P3\\data\\meteo2016.xml",
-                "PBP_RA1_P3\\data\\meteo2017.xml"          
+                "PBP_RA1_P3\\meteo2015.xml",
+                "PBP_RA1_P3\\meteo2016.xml",
+                "PBP_RA1_P3\\meteo2017.xml"
             };
 
             // Recorrem tots els fitxers meteorologics
@@ -289,7 +287,7 @@ public class Exercicis {
 
     public static void exercici5(Scanner teclat) {
         try {
-            Document doc = obrirFitxerXML("PBP_RA1_P3\\data\\clash.xml");
+            Document doc = obrirFitxerXML("PBP_RA1_P3\\clash.xml");
             Node elementRoot = doc.getDocumentElement();
 
             // Demana a l'usuari un nom de jugador
@@ -311,7 +309,7 @@ public class Exercicis {
             elementRoot.appendChild(jugador);
 
             // Guarda el fitxer XML
-            guardarXML(doc, "PBP_RA1_P3\\data\\clash.xml");
+            guardarXML(doc, "clash.xml");
         } catch (Exception e) {
             System.out.println("Hi ha hagut un error: " + e);
         }
@@ -319,7 +317,7 @@ public class Exercicis {
 
     public static void exercici6(Scanner teclat) {
         try {
-            Document doc = obrirFitxerXML("PBP_RA1_P3\\data\\clash.xml");
+            Document doc = obrirFitxerXML("PBP_RA1_P3\\clash.xml");
 
             NodeList jugadors = doc.getElementsByTagName("jugador");
 
@@ -333,7 +331,8 @@ public class Exercicis {
                 // Selecciona dos jugador aleatoris
                 int idx1 = rand.nextInt(jugadors.getLength());
                 int idx2;
-
+                
+                
                 do {
                     idx2 = rand.nextInt(jugadors.getLength());
                 } while (idx2 == idx1);
@@ -362,23 +361,41 @@ public class Exercicis {
                 String resultat2 = torres2 + "-" + torres1;
                 afegirPartida(jugador2, doc, data, resultat2, durada, "Lliga");
 
-                // Actualitza copes del guanyador
+                // Actualitzar copes
+                Element jugadorGuanyador = null;
+                String nomGuanyador = "Empat";
+                
                 if (torres1 > torres2) {
+                    jugadorGuanyador = jugador1;
+                    nomGuanyador = nom1;
                     sumarCopes(jugador1, 3);
                 } else if (torres2 > torres1) {
+                    jugadorGuanyador = jugador2;
+                    nomGuanyador = nom2;
                     sumarCopes(jugador2, 3);
-                }
-
-                // Suma 1 copa a tots dos en cas d'empat
-                if (torres1 == torres2) {
+                } else {
                     sumarCopes(jugador1, 1);
                     sumarCopes(jugador2, 1);
                 }
 
+                // Obtenir noves copes
+                String novesCopes = "";
+                if (jugadorGuanyador != null) {
+                    novesCopes = jugadorGuanyador.getElementsByTagName("noves").item(0).getTextContent();
+                }
+
+                System.out.println("\n=== Simulació de partida ===");
+                System.out.println("Jugador1: " + nom1);
+                System.out.println("Jugador2: " + nom2);
+                System.out.println("Resultat: " + resultat);
+                System.out.println("Guanyador: " + nomGuanyador);
+                System.out.println("Noves copes de guanyador: " + novesCopes);
+
+
                 System.out.println("Partida " + partidaNum + ": " + nom1 + " vs " + nom2 + "->" + resultat);
             }
 
-            guardarXML(doc, "PBP_RA1_P3\\data\\clash.xml");
+            guardarXML(doc, "clash.xml");
             System.out.println("S'han simulat " + numPartides + " partides i s'ha actualitzat el fitxer XML.");
             
         } catch (Exception e) {

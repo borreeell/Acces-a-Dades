@@ -15,7 +15,7 @@ public class PBP_RA1_P3 {
 
         menu();
 
-        while (opcio != 2) {
+        while (opcio != 6) {
             System.out.println("--Escull opcio: ");
             opcio = teclat.nextInt(); // Cridem al metode nextInt per llegir el numero i guardar a opcio
             teclat.nextLine(); // Consumir el salt de línia
