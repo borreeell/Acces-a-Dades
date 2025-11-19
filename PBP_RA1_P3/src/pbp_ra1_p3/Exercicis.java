@@ -26,10 +26,10 @@ public class Exercicis {
 
         // Crea una nova instancia de DocumentBuilderFactory
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        
+
         // Crea un nou DocumentBuilder utilitzant el dbFactory creat abans
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        
+
         // Llegeix el fitxer XML i crea un objecte Document amb el contingut
         Document doc = (Document) dBuilder.parse(fxml);
 
@@ -41,48 +41,71 @@ public class Exercicis {
     }
 
     private static Element createElement(Document doc, String etiqueta, String valor) {
+        // Crea un nou element amb l'etiqueta especificada
         Element e = doc.createElement(etiqueta);
+
+        // Assigna el valor de text al element
         e.setTextContent(valor);
+
+        // Retorna l'element creat
         return e;
     }
 
     private static void afegirPartida(Element jugador, Document doc, String data, String resultat, String durada, String tipus) {
         Element partides;
+
+        // Busca si ja existeix l'element <partides> dins del jugador
         NodeList llistaPartides = jugador.getElementsByTagName("partides");
 
+        // Si no existeix l'element <partides>, el crea
         if (llistaPartides.getLength() == 0) {
             partides = doc.createElement("partides");
             jugador.appendChild(partides);
         } else {
+            // Si ja existeix, l'obte
             partides = (Element) llistaPartides.item(0);
         }
 
+        // Crea un nou element <partida>
         Element partida = doc.createElement("partida");
+
+        // Afegeix els elements fills amb les dades de la partida
         partida.appendChild(createElement(doc,"data", data));
         partida.appendChild(createElement(doc,"resultat", resultat));
         partida.appendChild(createElement(doc,"durada", durada));
         partida.appendChild(createElement(doc,"tipus", tipus));
 
+        // Afegeix la partida creada a l'element <partides>
         partides.appendChild(partida);
     }
 
     private static void sumarCopes(Element jugador, int copes) {
+        // Obte l'element <copes> del jugador
         Element nodeCopes = (Element) jugador.getElementsByTagName("copes").item(0);
+
+        // Llegeix el valor actual de copes i el converteix a enter
         int valor = Integer.parseInt(nodeCopes.getTextContent());
+
+        // Suma les noves copes i actualitza el valor
         nodeCopes.setTextContent(String.valueOf(valor + copes));
     }
 
     private static void guardarXML(Document doc, String ruta) throws TransformerConfigurationException, TransformerException {
+        // Crea un transformer per convertir el document en fitxer XML
         Transformer tFormer = TransformerFactory.newInstance().newTransformer();
-        
-        
+
+        // Configura la sortida per tenir indentacio (format llegible)
         tFormer.setOutputProperty(OutputKeys.INDENT, "yes");
 
+        // Defineix la font de dades (el document DOM)
         Source source = new DOMSource(doc);
+
+        // Defineix el destí de la sortida (el fitxer)
         Result result = new StreamResult(new File(ruta));
 
+        // Realitza la transformacio i guarda el fitxer
         tFormer.transform(source, result);
-    } 
+    }
 
     public static void exercici2(Scanner teclat) {
         try {
@@ -115,7 +138,8 @@ public class Exercicis {
                     if (nomJugador.equals(nomCercat)) {
                         jugadorTrobat = true;
 
-                        System.out.println("Nom: " + nomJugador); 
+                        // Mostrem les dades principals del jugador
+                        System.out.println("Nom: " + nomJugador);
                         System.out.println("Nivell: " + jugador.getElementsByTagName("nivell").item(0).getTextContent());
                         System.out.println("Copes: " + jugador.getElementsByTagName("copes").item(0).getTextContent());
                         System.out.println("Or: " + jugador.getElementsByTagName("or").item(0).getTextContent());
@@ -146,6 +170,7 @@ public class Exercicis {
                 }
             }
 
+            // Si no s'ha trobat cap jugador, mostrem un missatge
             if (!jugadorTrobat) {
                 System.out.println("No s'ha trobat cap jugador amb el nom: " + nomCercat);
             }
@@ -174,7 +199,10 @@ public class Exercicis {
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element e = (Element) node;
 
+                    // Extraiem el nom del jugador
                     String nom = e.getElementsByTagName("nom").item(0).getTextContent();
+
+                    // Extraiem les copes del jugador i les convertim a enter
                     int copes = Integer.parseInt(e.getElementsByTagName("copes").item(0).getTextContent());
 
                     // Creem un objecte jugador amb les dades extretes
@@ -182,7 +210,7 @@ public class Exercicis {
 
                     // Afegim el jugador a la llista
                     jugadors.add(j);
-                } 
+                }
             }
 
             // Comprovem si s'han trobat jugadors al fitxer
@@ -191,7 +219,7 @@ public class Exercicis {
                 return;
             }
 
-            // Inicialitzem el jugador com el primer de la llista
+            // Inicialitzem el millor jugador com el primer de la llista
             Jugador millorJugador = jugadors.get(0);
 
             // Recorrem tots els jugadors per trobar el que te mes copes
@@ -214,22 +242,24 @@ public class Exercicis {
         try {
             // Rutes dels fitxers amb les dades meteorologiques
             String[] fitxers = {
-                "PBP_RA1_P3\\meteo2015.xml",
-                "PBP_RA1_P3\\meteo2016.xml",
-                "PBP_RA1_P3\\meteo2017.xml"
+                    "PBP_RA1_P3\\meteo2015.xml",
+                    "PBP_RA1_P3\\meteo2016.xml",
+                    "PBP_RA1_P3\\meteo2017.xml"
             };
 
             // Recorrem tots els fitxers meteorologics
             for (String fitxer : fitxers) {
-                // Obrim el fitxer
+                // Obrim el fitxer XML
                 Document doc = obrirFitxerXML(fitxer);
 
                 // Obtenim una llista de tots els elements <element>
                 NodeList llista = doc.getElementsByTagName("element");
 
-                // Variables per guardar les dades dels fitxers
+                // Variables per guardar la temperatura maxima i minima globals
                 double tmaxGlobal = Double.NEGATIVE_INFINITY;
                 double tminGlobal = Double.POSITIVE_INFINITY;
+
+                // Variables per guardar les dates i hores de les temperatures extremes
                 String dataTmax = "", horaTmax = "";
                 String dataTmin = "", horaTmin = "";
 
@@ -240,30 +270,31 @@ public class Exercicis {
                     if (node.getNodeType() == Node.ELEMENT_NODE) {
                         Element e = (Element) node;
 
+                        // Extraiem les dades de cada element de forma segura
                         String data = getTextSafe(e, "fecha");
                         String horatmax = getTextSafe(e, "horatmax");
                         String horatmin = getTextSafe(e, "horatmin");
                         String tmaxStr = getTextSafe(e, "tmax");
                         String tminStr = getTextSafe(e, "tmin");
 
+                        // Si falten dades, mostrem un missatge i saltem aquesta entrada
                         if (tmaxStr.isEmpty() || tminStr.isEmpty() || data.isEmpty()) {
                             System.out.println("Dada incompleta el: " + data + " - s'omet");
                             continue;
                         }
 
-                        // Els valors poden tenir comes, aixi que els substituim per punts abans de parsejar
+                        // Convertim les temperatures de String a double (substituint comes per punts)
                         double tmax = Double.parseDouble(tmaxStr.replace(",", "."));
-
                         double tmin = Double.parseDouble(tminStr.replace(",", "."));
 
-
-                        // Actualitzem maxim i minim si cal
+                        // Actualitzem la temperatura maxima si trobem una de mes alta
                         if (tmax > tmaxGlobal) {
                             tmaxGlobal = tmax;
                             dataTmax = data;
                             horaTmax = horatmax;
                         }
 
+                        // Actualitzem la temperatura minima si trobem una de mes baixa
                         if (tmin < tminGlobal) {
                             tminGlobal = tmin;
                             dataTmin = data;
@@ -271,8 +302,8 @@ public class Exercicis {
                         }
                     }
                 }
-                
-                // Mostrem els resultats
+
+                // Mostrem els resultats per cada fitxer processat
                 System.out.println("./" + new File(fitxer).getName());
                 System.out.println("Tmax [" + dataTmax + " " + horaTmax + "] = " + tmaxGlobal);
                 System.out.println("Tmin [" + dataTmin + " " + horaTmin + "] = " + tminGlobal);
@@ -282,22 +313,24 @@ public class Exercicis {
         } catch (Exception e) {
             System.out.println("Hi ha hagut un error: " + e);
         }
-
     }
 
     public static void exercici5(Scanner teclat) {
         try {
+            // Obrim el fitxer XML amb les dades dels jugadors
             Document doc = obrirFitxerXML("PBP_RA1_P3\\clash.xml");
+
+            // Obtenim l'element arrel del document
             Node elementRoot = doc.getDocumentElement();
 
-            // Demana a l'usuari un nom de jugador
+            // Demanem a l'usuari el nom del nou jugador
             System.out.println("Entra el nom del jugador: ");
             String nomIn = teclat.nextLine();
 
-            // Crea l'element jugador
+            // Creem un nou element <jugador>
             Element jugador = doc.createElement("jugador");
 
-            // Afegeix els elements creats dins de jugador
+            // Afegim els elements fills amb els valors inicials del jugador
             jugador.appendChild(createElement(doc, "nom", nomIn));
             jugador.appendChild(createElement(doc, "nivell", "1"));
             jugador.appendChild(createElement(doc, "copes", "0"));
@@ -305,11 +338,13 @@ public class Exercicis {
             jugador.appendChild(createElement(doc, "gems", "0"));
             jugador.appendChild(createElement(doc, "estrelles", "0"));
 
-            // Afegeix l'element <jugador> dins del element pare del fitxer
+            // Afegim l'element <jugador> dins de l'element arrel del document
             elementRoot.appendChild(jugador);
 
-            // Guarda el fitxer XML
+            // Guardem els canvis al fitxer XML
             guardarXML(doc, "clash.xml");
+
+            System.out.println("Jugador afegit correctament!");
         } catch (Exception e) {
             System.out.println("Hi ha hagut un error: " + e);
         }
@@ -317,73 +352,85 @@ public class Exercicis {
 
     public static void exercici6(Scanner teclat) {
         try {
+            // Obrim el fitxer XML amb les dades dels jugadors
             Document doc = obrirFitxerXML("PBP_RA1_P3\\clash.xml");
 
+            // Obtenim la llista de tots els jugadors
             NodeList jugadors = doc.getElementsByTagName("jugador");
 
+            // Demanem a l'usuari quantes partides vol simular
             System.out.println("Quantes partides vols simular? ");
             int numPartides = teclat.nextInt();
             teclat.nextLine();
 
+            // Creem un objecte Random per generar valors aleatoris
             Random rand = new Random();
 
+            // Simulem el nombre de partides especificat
             for (int partidaNum = 1; partidaNum <= numPartides; partidaNum++) {
-                // Selecciona dos jugador aleatoris
+                // Seleccionem un primer jugador aleatori
                 int idx1 = rand.nextInt(jugadors.getLength());
                 int idx2;
-                
-                
+
+                // Seleccionem un segon jugador aleatori diferent del primer
                 do {
                     idx2 = rand.nextInt(jugadors.getLength());
                 } while (idx2 == idx1);
 
+                // Obtenim els elements dels dos jugadors seleccionats
                 Element jugador1 = (Element) jugadors.item(idx1);
                 Element jugador2 = (Element) jugadors.item(idx2);
 
+                // Extraiem els noms dels jugadors
                 String nom1 = jugador1.getElementsByTagName("nom").item(0).getTextContent();
                 String nom2 = jugador2.getElementsByTagName("nom").item(0).getTextContent();
 
-                // Genera el resultat aleatori
+                // Generem un resultat aleatori (torres destruides: 0-3)
                 int torres1 = rand.nextInt(4);
                 int torres2 = rand.nextInt(4);
 
+                // Formem la cadena del resultat
                 String resultat = torres1 + "-" + torres2;
 
-                // Crea la partida per tots dos jugadors
+                // Generem la data actual i una durada aleatoria per la partida
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 String data = LocalDateTime.now().format(dtf);
                 String durada = (2 + rand.nextInt(5)) + ":" + String.format("%02d", rand.nextInt(60));
 
-                // Afegir partida a jugador1
+                // Afegim la partida al primer jugador
                 afegirPartida(jugador1, doc, data, resultat, durada, "Lliga");
 
-                // Afegir partida a jugador2 amb resultat invertit
+                // Afegim la partida al segon jugador amb el resultat invertit
                 String resultat2 = torres2 + "-" + torres1;
                 afegirPartida(jugador2, doc, data, resultat2, durada, "Lliga");
 
-                // Actualitzar copes
+                // Determinem el guanyador i actualitzem les copes
                 Element jugadorGuanyador = null;
                 String nomGuanyador = "Empat";
-                
+
                 if (torres1 > torres2) {
+                    // Jugador1 guanya: obte 3 copes
                     jugadorGuanyador = jugador1;
                     nomGuanyador = nom1;
                     sumarCopes(jugador1, 3);
                 } else if (torres2 > torres1) {
+                    // Jugador2 guanya: obte 3 copes
                     jugadorGuanyador = jugador2;
                     nomGuanyador = nom2;
                     sumarCopes(jugador2, 3);
                 } else {
+                    // Empat: tots dos obtenen 1 copa
                     sumarCopes(jugador1, 1);
                     sumarCopes(jugador2, 1);
                 }
 
-                // Obtenir noves copes
+                // Obtenim les noves copes del guanyador si n'hi ha
                 String novesCopes = "";
                 if (jugadorGuanyador != null) {
-                    novesCopes = jugadorGuanyador.getElementsByTagName("noves").item(0).getTextContent();
+                    novesCopes = jugadorGuanyador.getElementsByTagName("copes").item(0).getTextContent();
                 }
 
+                // Mostrem un resum de la partida simulada
                 System.out.println("\n=== Simulació de partida ===");
                 System.out.println("Jugador1: " + nom1);
                 System.out.println("Jugador2: " + nom2);
@@ -391,23 +438,26 @@ public class Exercicis {
                 System.out.println("Guanyador: " + nomGuanyador);
                 System.out.println("Noves copes de guanyador: " + novesCopes);
 
-
-                System.out.println("Partida " + partidaNum + ": " + nom1 + " vs " + nom2 + "->" + resultat);
+                System.out.println("Partida " + partidaNum + ": " + nom1 + " vs " + nom2 + " -> " + resultat);
             }
 
+            // Guardem tots els canvis al fitxer XML
             guardarXML(doc, "clash.xml");
             System.out.println("S'han simulat " + numPartides + " partides i s'ha actualitzat el fitxer XML.");
-            
+
         } catch (Exception e) {
             System.out.println("Hi ha hagut un error: " + e);
         }
     }
 
     private static String getTextSafe(Element e, String tag) {
+        // Busca l'element amb l'etiqueta especificada
         NodeList list = e.getElementsByTagName(tag);
 
+        // Si no existeix o esta buit, retorna una cadena buida
         if (list == null || list.getLength() == 0 || list.item(0) == null) return "";
 
+        // Retorna el contingut de text, eliminant espais i substituint comes per punts
         return list.item(0).getTextContent().trim().replace(",", ".");
     }
 }
