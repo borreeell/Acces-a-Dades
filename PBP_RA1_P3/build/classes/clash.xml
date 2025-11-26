@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jugadors>
+        
+    <jugador>
+                
+        <nom>Player1</nom>
+                
+        <nivell>13</nivell>
+                
+        <copes>5202</copes>
+                
+        <or>15000</or>
+                
+        <gems>120</gems>
+                
+        <estrelles>5</estrelles>
+                
+        <partides>
+                        
+            <partida>
+                                
+                <data>2025-10-10</data>
+                                
+                <resultat>3-1</resultat>
+                                
+                <durada>3:12</durada>
+                                
+                <tipus>Torneig</tipus>
+                            
+            </partida>
+                        
+            <partida>
+                                
+                <data>2025-10-11</data>
+                                
+                <resultat>1-3</resultat>
+                                
+                <durada>2:48</durada>
+                                
+                <tipus>Lliga</tipus>
+                            
+            </partida>
+                        
+            <partida>
+                                
+                <data>2025-10-12</data>
+                                
+                <resultat>2-0</resultat>
+                                
+                <durada>3:25</durada>
+                                
+                <tipus>Amistós</tipus>
+                            
+            </partida>
+                    
+            <partida>
+                <data>2025-11-19</data>
+                <resultat>1-3</resultat>
+                <durada>6:56</durada>
+                <tipus>Lliga</tipus>
+            </partida>
+            <partida>
+                <data>2025-11-19</data>
+                <resultat>2-3</resultat>
+                <durada>2:49</durada>
+                <tipus>Lliga</tipus>
+            </partida>
+            <partida>
+                <data>2025-11-19</data>
+                <resultat>0-3</resultat>
+                <durada>5:02</durada>
+                <tipus>Lliga</tipus>
+            </partida>
+            <partida>
+                <data>2025-11-19</data>
+                <resultat>0-0</resultat>
+                <durada>5:11</durada>
+                <tipus>Lliga</tipus>
+            </partida>
+            <partida>
+                <data>2025-11-19</data>
+                <resultat>0-0</resultat>
+                <durada>2:20</durada>
+                <tipus>Lliga</tipus>
+            </partida>
+        </partides>
+            
+    </jugador>
+            
+    
+    <jugador>
+                
+        <nom>Player2</nom>
+                
+        <nivell>11</nivell>
+                
+        <copes>4107</copes>
+                
+        <or>8700</or>
+                
+        <gems>300</gems>
+                
+        <estrelles>4</estrelles>
+                
+        <partides>
+                        
+            <partida>
+                                
+                <data>2025-10-09</data>
+                                
+                <resultat>2-3</resultat>
+                                
+                <durada>2:59</durada>
+                                
+                <tipus>Lliga</tipus>
+                            
+            </partida>
+                        
+            <partida>
+                                
+                <data>2025-10-11</data>
+                                
+                <resultat>3-2</resultat>
+                                
+                <durada>3:01</durada>
+                                
+                <tipus>Amistós</tipus>
+                            
+            </partida>
+                        
+            <partida>
+                                
+                <data>2025-10-12</data>
+                                
+                <resultat>1-3</resultat>
+                                
+                <durada>2:44</durada>
+                                
+                <tipus>Torneig</tipus>
+                            
+            </partida>
+                    
+            <partida>
+                <data>2025-11-19</data>
+                <resultat>0-3</resultat>
+                <durada>2:29</durada>
+                <tipus>Lliga</tipus>
+            </partida>
+            <partida>
+                <data>2025-11-19</data>
+                <resultat>3-2</resultat>
+                <durada>2:49</durada>
+                <tipus>Lliga</tipus>
+            </partida>
+            <partida>
+                <data>2025-11-19</data>
+                <resultat>0-0</resultat>
+                <durada>5:11</durada>
+                <tipus>Lliga</tipus>
+            </partida>
+            <partida>
+                <data>2025-11-19</data>
+                <resultat>0-1</resultat>
+                <durada>2:36</durada>
+                <tipus>Lliga</tipus>
+            </partida>
+            <partida>
+                <data>2025-11-19</data>
+                <resultat>3-0</resultat>
+                <durada>2:37</durada>
+                <tipus>Lliga</tipus>
+            </partida>
+            <partida>
+                <data>2025-11-19</data>
+                <resultat>0-1</resultat>
+                <durada>4:14</durada>
+                <tipus>Lliga</tipus>
+            </partida>
+            <partida>
+                <data>2025-11-19</data>
+                <resultat>0-2</resultat>
+                <durada>6:05</durada>
+                <tipus>Lliga</tipus>
+            </partida>
+        </partides>
+            
+    </jugador>
+            
+    
+    <jugador>
+                
+        <nom>Player3</nom>
+                
+        <nivell>10</nivell>
+                
+        <copes>3515</copes>
+                
+        <or>5600</or>
+                
+        <gems>80</gems>
+                
+        <estrelles>3</estrelles>
+                
+        <partides>
+                        
+            <partida>
+                                
+                <data>2025-10-10</data>
+                                
+                <resultat>3-0</resultat>
+                                
+                <durada>2:33</durada>
+                                
+                <tipus>Amistós</tipus>
+                            
+            </partida>
+                        
+            <partida>
+                                
+                <data>2025-10-11</data>
+                                
+                <resultat>0-3</resultat>
+                                
+                <durada>2:21</durada>
+                                
+                <tipus>Lliga</tipus>
+                            
+            </partida>
+                        
+            <partida>
+                                
+                <data>2025-10-12</data>
+                                
+                <resultat>2-1</resultat>
+                                
+                <durada>3:18</durada>
+                                
+                <tipus>Torneig</tipus>
+                            
+            </partida>
+                    
+            <partida>
+                <data>2025-11-19</data>
+                <resultat>3-1</resultat>
+                <durada>6:56</durada>
+                <tipus>Lliga</tipus>
+            </partida>
+            <partida>
+                <data>2025-11-19</data>
+                <resultat>3-0</resultat>
+                <durada>5:02</durada>
+                <tipus>Lliga</tipus>
+            </partida>
+            <partida>
+                <data>2025-11-19</data>
+                <resultat>1-0</resultat>
+                <durada>2:36</durada>
+                <tipus>Lliga</tipus>
+            </partida>
+            <partida>
+                <data>2025-11-19</data>
+                <resultat>0-3</resultat>
+                <durada>2:37</durada>
+                <tipus>Lliga</tipus>
+            </partida>
+            <partida>
+                <data>2025-11-19</data>
+                <resultat>1-0</resultat>
+                <durada>4:14</durada>
+                <tipus>Lliga</tipus>
+            </partida>
+            <partida>
+                <data>2025-11-19</data>
+                <resultat>2-0</resultat>
+                <durada>6:05</durada>
+                <tipus>Lliga</tipus>
+            </partida>
+        </partides>
+            
+    </jugador>
+        
+    
+    <jugador>
+                
+        <nom>pablo</nom>
+                
+        <nivell>1</nivell>
+                
+        <copes>4</copes>
+                
+        <or>0</or>
+                
+        <gems>0</gems>
+                
+        <estrelles>0</estrelles>
+            
+        <partides>
+            <partida>
+                <data>2025-11-19</data>
+                <resultat>3-0</resultat>
+                <durada>2:29</durada>
+                <tipus>Lliga</tipus>
+            </partida>
+            <partida>
+                <data>2025-11-19</data>
+                <resultat>0-0</resultat>
+                <durada>2:20</durada>
+                <tipus>Lliga</tipus>
+            </partida>
+        </partides>
+    </jugador>
+    
+</jugadors>
