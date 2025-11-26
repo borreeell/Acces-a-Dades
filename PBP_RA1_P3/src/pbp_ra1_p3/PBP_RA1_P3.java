@@ -3,7 +3,6 @@ package pbp_ra1_p3;
 import java.util.Scanner;
 
 /**
- *
  * @author Pau Borrell
  */
 public class PBP_RA1_P3 {

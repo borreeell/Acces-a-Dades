@@ -1,3 +1,7 @@
+# IDE Files
+.idea/*
+/out/*
+
 # Compiled class file
 *.class
 
@@ -33,6 +37,9 @@ arxiuPdf.pdf
 # P2
 nom usuaris.txt
 usuaris.txt
+
+# P3
 /PBP_RA1_P3/build/
-.idea/*
-/out/*
+
+# Fitxers examens
+PBP_RA1_ExamenPractic/*

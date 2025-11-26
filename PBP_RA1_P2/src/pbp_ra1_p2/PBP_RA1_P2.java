@@ -5,6 +5,9 @@ import java.util.Scanner;
 
 public class PBP_RA1_P2 {
 
+    /**
+     * @author Pau Borrell
+     */
     public static void main(String[] args) {
         int opcio = 0; // Variable per controlar l'accio seleccionada pel usuari
         Scanner teclat = new Scanner(System.in); // Scanner per llegir l'entrada del teclat
