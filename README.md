@@ -9,4 +9,4 @@ Aquest repositori conté les practiques de l'assignatura d'**Accés a Dades** de
 
 ## Llicència
 
-Aquest projecte està sota la llicència APACHE. Consulta el fitxer [LICENSE](LICENSE) per a més informació.
+Aquest projecte està sota la llicència MIT. Consulta el fitxer [LICENSE](LICENSE) per a més informació.
