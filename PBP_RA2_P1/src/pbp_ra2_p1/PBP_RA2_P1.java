@@ -34,12 +34,12 @@ public class PBP_RA2_P1 {
     }
     
     private static void menu() {
-        System.out.println("************************************************");
-        System.out.println("************** MENÚ - Pau Borrell **************");
+        System.out.println("****************************************");
+        System.out.println("********** MENÚ - Pau Borrell **********");
         System.out.println("1.- Llistar els jugadors i partides");
         System.out.println("2.- Afegir un jugador");
         System.out.println("0.- Sortir");
-        System.out.println("************************************************");
+        System.out.println("****************************************");
     }
     
     private static void seleccio(int opcio, Scanner teclat) {
