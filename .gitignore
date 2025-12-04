@@ -28,18 +28,15 @@ hs_err_pid*
 replay_pid*
 
 # arxius de les execucions
-## P1
+## P1_RA1
 directori/*
 arxiu-terminal.txt
 arxiu.txt
 arxiuPdf.pdf
 
-## P2
+## P2_RA1
 nom usuaris.txt
 usuaris.txt
 
 ## Fitxers examens
 PBP_RA1_ExamenPractic/*
-/PBP_RA2_P1/nbproject/private/
-/PBP_RA2_P1/build/
-/PBP_RA2_P1/dist/
