@@ -5,7 +5,7 @@
  */
 package pbp_ra2_p1;
 
-
+import java.sql.SQLException;
 import java.util.Scanner;
 
 /**
@@ -14,22 +14,24 @@ import java.util.Scanner;
  */
 public class PBP_RA2_P1 {
 
-    /**
+    /**1
+     * 
      * @param args the command line arguments
+     * @throws java.sql.SQLException
      */
-    public static void main(String[] args) {     
-        int opcio = 0;
+    public static void main(String[] args) throws SQLException {     
+        int opcio = -1;
         
         Scanner teclat = new Scanner(System.in);
         
         menu();
         
-        while (opcio != 2) {
+        while (opcio != 0) {
             System.out.println("-- Escull una opcio: ");
             opcio = teclat.nextInt();
             
             System.out.println("");
-            seleccio(opcio, teclat);
+            seleccio(opcio);
         }
     }
     
@@ -42,9 +44,10 @@ public class PBP_RA2_P1 {
         System.out.println("****************************************");
     }
     
-    private static void seleccio(int opcio, Scanner teclat) {
+    private static void seleccio(int opcio) throws SQLException {
         switch (opcio) {
             case 1:
+                Exercicis.exercici1();
                 break;
             case 2:
                 break;
@@ -55,5 +58,4 @@ public class PBP_RA2_P1 {
                 break;
         }
     }
-    
 }
