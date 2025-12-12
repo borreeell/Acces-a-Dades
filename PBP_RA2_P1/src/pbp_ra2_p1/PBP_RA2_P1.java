@@ -50,6 +50,7 @@ public class PBP_RA2_P1 {
                 Exercicis.exercici1();
                 break;
             case 2:
+                Exercicis.exercici2AfegirJugador();
                 break;
             case 0:
                 System.out.println("Sortint del programa....");

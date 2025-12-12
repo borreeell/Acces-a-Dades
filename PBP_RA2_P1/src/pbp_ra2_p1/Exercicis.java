@@ -4,6 +4,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
+import java.util.Scanner;
 
 /**
  *
@@ -140,6 +142,35 @@ public class Exercicis {
             tancarConnexio();
         }
     }
+    
+    public static void exercici2AfegirJugador() throws SQLException {
+        Connection conn = getConnection();
+        Scanner input = new Scanner(System.in);
+
+        try {
+            System.out.print("Introdueix el nom del jugador: ");
+            String nom = input.nextLine().trim();
+
+            // Validació del nom
+            while (nom.isEmpty()) {
+                System.out.print("El nom no pot estar buit. Torna-ho a intentar: ");
+                nom = input.nextLine().trim();
+            }
+
+            String sqlInsert = "INSERT INTO jugadors (id, nom) VALUES (?, ?)";
+            PreparedStatement psInsert = conn.prepareStatement(sqlInsert);
+
+            psInsert.setInt(1, ultimId());
+            psInsert.setString(2, nom);
+            
+            psInsert.close();
+        } catch (SQLException e) {
+            System.err.println("Error SQL: " + e.getMessage());
+        } finally {
+            tancarConnexio();
+        }
+    }
+
     
     /**
      * Retorna l'últim ID dels jugadors
