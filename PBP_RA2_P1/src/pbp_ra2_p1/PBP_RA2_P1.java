@@ -33,6 +33,8 @@ public class PBP_RA2_P1 {
             System.out.println("");
             seleccio(opcio);
         }
+
+       
     }
     
     private static void menu() {
@@ -50,7 +52,7 @@ public class PBP_RA2_P1 {
                 Exercicis.exercici1();
                 break;
             case 2:
-                Exercicis.exercici2AfegirJugador();
+                Exercicis.exercici2();
                 break;
             case 0:
                 System.out.println("Sortint del programa....");

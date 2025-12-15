@@ -118,8 +118,9 @@ public class Exercicis {
                     
                     // Mostrar informació de la partida
                     System.out.println("  - Partida #" + idPartida + ": " + nomJug1 + 
-                                     " vs " + nomJug2 + " (Temps: " + temps + 
-                                     ", Tipus: " + tipus + ") → Guanyador: " + guanyador);
+                        " vs " + nomJug2 + " (Temps: " + temps + 
+                        ", Tipus: " + tipus + ") → Guanyador: " + guanyador
+                    );
                 }
                 
                 if (!tePartides) {
@@ -129,7 +130,7 @@ public class Exercicis {
                 rsPartides.close();
                 stmtPartides.close();
                 
-                System.out.println(); // Línia en blanc entre jugadors
+                System.out.println();
             }
             
             rsJugadors.close();
@@ -143,26 +144,31 @@ public class Exercicis {
         }
     }
     
-    public static void exercici2AfegirJugador() throws SQLException {
-        Connection conn = getConnection();
-        Scanner input = new Scanner(System.in);
+    public static void exercici2() throws SQLException {
+        Connection conn = getConnection(); // Crea una connexio a la base de dades
+        Scanner input = new Scanner(System.in); // Crea un objecte Scanner
 
         try {
             System.out.print("Introdueix el nom del jugador: ");
-            String nom = input.nextLine().trim();
+            String nom = input.nextLine().trim(); // Demanem el nom del nou jugador
 
-            // Validació del nom
+            // Validació del nom, el nom no pot estar buit
             while (nom.isEmpty()) {
                 System.out.print("El nom no pot estar buit. Torna-ho a intentar: ");
                 nom = input.nextLine().trim();
             }
 
+            // Sentencia INSERT amb preparedStatement per protegir-se de injeccio SQL
             String sqlInsert = "INSERT INTO jugadors (id, nom) VALUES (?, ?)";
             PreparedStatement psInsert = conn.prepareStatement(sqlInsert);
 
+            // Parametres a inserir
             psInsert.setInt(1, ultimId());
             psInsert.setString(2, nom);
             
+            // Executa la actualitzacio per insertar la informacio a la base de dades
+            psInsert.executeUpdate();
+
             psInsert.close();
         } catch (SQLException e) {
             System.err.println("Error SQL: " + e.getMessage());
@@ -195,6 +201,6 @@ public class Exercicis {
             System.err.println("Error de SQL: " + e.getMessage());
         }
         
-        return id;
+        return id + 1;
     }
 }
