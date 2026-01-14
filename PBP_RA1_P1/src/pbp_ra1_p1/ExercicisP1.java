@@ -1,23 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+
 import java.util.Random;
 import java.util.Scanner;
 
 /**
- *
  * @author Pau Borrell
  */
-public class Exercicis {
+public class ExercicisP1 {
     public static void exercici2() {
         // Crea un objecte File que rep com a parametre un string amb la ruta de l'arxiu.
         File arxiu = new File("C:\\Windows\\notepad.exe");

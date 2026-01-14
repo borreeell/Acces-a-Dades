@@ -1,17 +1,19 @@
 package pbp_ra2_p1;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.PreparedStatement;
+
 import java.util.Scanner;
 
 /**
  *
  * @author AluCiclesGS1
  */
-public class Exercicis { 
+public class ExercicisRA2P1 { 
     
     // Connexió estàtica compartida
     private static Connection connection = null;
@@ -40,6 +42,7 @@ public class Exercicis {
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
             System.out.println("Nova connexió creada a la db");
         }
+
         return connection;
     }
     
@@ -57,6 +60,10 @@ public class Exercicis {
         }
     }
     
+    /**
+     * Llista tots els jugadors i les seves partides
+     * @throws SQLException
+     */
     public static void exercici1() throws SQLException {
         Connection conn = getConnection();
         
@@ -144,6 +151,10 @@ public class Exercicis {
         }
     }
     
+    /**
+     * Afegeix un nou jugador a la base de dades
+     * @throws SQLException
+     */
     public static void exercici2() throws SQLException {
         Connection conn = getConnection(); // Crea una connexio a la base de dades
         Scanner input = new Scanner(System.in); // Crea un objecte Scanner
@@ -163,7 +174,7 @@ public class Exercicis {
             PreparedStatement psInsert = conn.prepareStatement(sqlInsert);
 
             // Parametres a inserir
-            psInsert.setInt(1, ultimId());
+            psInsert.setInt(1, ultimIdJugador());
             psInsert.setString(2, nom);
             
             // Executa la actualitzacio per insertar la informacio a la base de dades
@@ -175,6 +186,143 @@ public class Exercicis {
         } finally {
             tancarConnexio();
         }
+
+        input.close();
+    }
+
+    /**
+     * Modifica un jugador existent
+     * @param teclat
+     * @throws SQLException
+     */
+    public static void exercici3(Scanner teclat) throws SQLException {
+        Connection conn = getConnection(); // Crea una connexio a la base de dades
+
+        try {
+            System.out.println("Entra la ID del jugador que vols editar: ");
+            int idJugador = teclat.nextInt();
+
+            // Consulta per obtenir les dades actuals del jugador
+            String sqlSelect = "SELECT nom, nivell, copes, oro, gemes FROM jugadors WHERE id = ?";
+            PreparedStatement psSelect = conn.prepareStatement(sqlSelect);
+            ResultSet rs;
+
+            psSelect.setInt(1, idJugador);
+            rs = psSelect.executeQuery();
+
+            if (rs.next()) {
+                String nomActual = rs.getString("nom");
+                int nivellActual = rs.getInt("nivell");
+                int oroActual = rs.getInt("oro");
+                int gemesActuals = rs.getInt("gemes");
+                int copesActuals = rs.getInt("copes");
+
+                // Demana els nous valors
+                System.out.println("Nom del jugador (" + nomActual + "): ");
+                String nomEditat = teclat.nextLine().trim();
+                if (nomEditat.isEmpty()) nomEditat = nomActual;
+
+                System.out.println("Nivell del jugador (" + nivellActual + "): ");
+                String nivellInput = teclat.nextLine().trim();
+                int nouNivell = nivellInput.isEmpty() ? nivellActual : Integer.parseInt(nivellInput);
+
+                System.out.println("Or del jugador (" + oroActual + "): ");
+                String oroInput = teclat.nextLine().trim();
+                int nouOro = oroInput.isEmpty() ? oroActual : Integer.parseInt(oroInput);
+
+                System.out.println("Gemes del jugador (" + gemesActuals + "): ");
+                String inputGemes = teclat.nextLine().trim();
+                int novesGemes = inputGemes.isEmpty() ? gemesActuals : Integer.parseInt(inputGemes);
+
+                System.out.println("Copes del jugador (" + copesActuals + "): ");
+                String copesInput = teclat.nextLine().trim();
+                int novesCopes = copesInput.isEmpty() ? copesActuals : Integer.parseInt(copesInput);
+
+                // Actualitza les dades del jugador
+                String sqlUpdate = "UPDATE jugadors SET nom = ?, nivell = ?, oro = ?, gemes = ?, copes = ? WHERE id = ?";
+                PreparedStatement psUpdate = conn.prepareStatement(sqlUpdate);
+                
+                psUpdate.setString(1, nomEditat);
+                psUpdate.setInt(2, nouNivell);
+                psUpdate.setInt(3, nouOro);
+                psUpdate.setInt(4, novesGemes);
+                psUpdate.setInt(5, novesCopes);
+                psUpdate.setInt(6, idJugador);
+
+                psUpdate.executeUpdate();
+                psUpdate.close();
+
+                System.out.println("Valors actualitzats: Nom =" + nomEditat + ", Nivell =" + nouNivell + ", Copes =" + novesCopes + ", Oro =" + nouOro + ", Gemes =" + novesGemes);
+
+            } else {
+                System.out.println("No s'ha trobat cap jugador amb aquest ID");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        } finally {
+            tancarConnexio();
+        }
+    }
+
+    /**
+     * Afegeix una partida
+     * @param teclat
+     * @throws SQLException
+     */
+    public static void exercici4(Scanner teclat) throws SQLException {
+        Connection conn = getConnection();
+
+        try {
+            // Llistar jugadors
+            System.out.println("=== Jugadors disponibles ===");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT id, nom FROM jugadors ORDER BY id");
+
+            while (rs.next()) {
+                System.out.println("ID: " + rs.getInt("id") + " | Nom: " + rs.getString("nom"));
+            }
+
+            rs.close();
+            stmt.close();
+
+            // Demanar qui es el primer i segon jugador
+            System.out.println("Entra la ID del primer jugador: ");
+            int idJugador1 = teclat.nextInt();
+            System.out.println("Entra la ID del segon jugador: ");
+            int idJugador2 = teclat.nextInt();
+
+            teclat.nextLine();
+
+            // Demanar resultat, tipus i durada
+            System.out.println("Entra el resultat de la partida: ");
+            String resultat = teclat.nextLine().trim();
+            System.out.println("Entra el tipus de partida: ");
+            String tipus = teclat.nextLine().trim();
+            System.out.println("Entra la durada de la partida: ");
+            String durada = teclat.nextLine().trim();
+
+            // Insertar la partida
+            String sqlInsert = "INSERT INTO partides(id, \"idJug1\", \"idJug2\", resultat, temps, tipus) VALUES (?, ?, ?, ?, ?, ?)";
+            PreparedStatement ps = conn.prepareStatement(sqlInsert);
+
+            ps.setInt(1, ultimIdPartida());
+            ps.setInt(2, idJugador1);
+            ps.setInt(3, idJugador2);
+            ps.setString(4, resultat);
+            ps.setString(5, durada);
+            ps.setString(6, tipus);
+
+            ps.executeUpdate();
+            ps.close();
+
+            System.out.println("Partida afegida.");
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+        } finally {
+            tancarConnexio();
+        }
+
+        teclat.close();
     }
 
     
@@ -183,13 +331,39 @@ public class Exercicis {
      * @return int
      * @throws SQLException
      */
-    private static int ultimId() throws SQLException {
+    private static int ultimIdJugador() throws SQLException {
         int id = 0;
         Connection conn = getConnection();
         
         try {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT id FROM jugadors ORDER BY id DESC LIMIT 1");
+            
+            if (rs.next()) {
+                id = rs.getInt("id");
+            }
+            
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            System.err.println("Error de SQL: " + e.getMessage());
+        }
+        
+        return id + 1;
+    }
+
+    /**
+     * Retorna l'ID de la ultima partida
+     * @return int
+     * @throws SQLException
+     */
+    private static int ultimIdPartida() throws SQLException {
+        int id = 0;
+        Connection conn = getConnection();
+        
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT id FROM partides ORDER BY id DESC LIMIT 1");
             
             if (rs.next()) {
                 id = rs.getInt("id");

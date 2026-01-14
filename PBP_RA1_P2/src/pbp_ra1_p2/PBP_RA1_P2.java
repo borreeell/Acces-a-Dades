@@ -36,7 +36,7 @@ public class PBP_RA1_P2 {
         // Executem l'accio corresponent segons l'opcio escollida
         switch (opcio) {
             case 1:
-                Exercicis.exercici1(teclat); // Crida al metode per afegir usuaris
+                ExercicisRA1P2.exercici1(teclat); // Crida al metode per afegir usuaris
                 break;
             case 2:
                 System.out.print("Introdueix usuari: ");
@@ -46,7 +46,7 @@ public class PBP_RA1_P2 {
                 String contrasenya = teclat.nextLine(); // Demanem la contrasenya
 
                 // Comprovem si l'usuari es correcte comprovant el fitxer
-                int resultat = Exercicis.exercici2("usuaris.txt", usuari, contrasenya);
+                int resultat = ExercicisRA1P2.exercici2("usuaris.txt", usuari, contrasenya);
 
                 if (resultat == 1) {
                     System.out.println("Usuari i contrasenya correctes. Benvingut " + usuari);

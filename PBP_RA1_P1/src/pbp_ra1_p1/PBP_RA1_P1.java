@@ -22,11 +22,12 @@ public class PBP_RA1_P1 {
             System.out.println("");
             seleccio(opcio); // Executar l'exercici escollit
         }
+
         teclat.close();
     }
 
     private static void menu() {
-        System.out.println("**********************");
+        System.out.println("************************************");
         System.out.println("******* MENÚ - Pau Borrell *********");
         System.out.println("1.- Comprova fitxers");
         System.out.println("2.- Llista d'arxius");
@@ -35,32 +36,32 @@ public class PBP_RA1_P1 {
         System.out.println("5.- Crear directori i arxiu");
         System.out.println("6.- Exercici 7");
         System.out.println("7.- Sortir");
-        System.out.println("**********************");
+        System.out.println("************************************");
     }
     
     private static void seleccio(int opcio) {
         switch(opcio) {
             case 1:
-                Exercicis.exercici2();
+                ExercicisP1.exercici2();
                 break;
             case 2:
-                Exercicis.exercici3();
+                ExercicisP1.exercici3();
                 break;
             case 3:
-                Exercicis.exercici4();
+                ExercicisP1.exercici4();
                 break;
             case 4:
                 try {
-                    Exercicis.exercici5();
+                    ExercicisP1.exercici5();
                 } catch (Exception e) {
                     System.out.println("Error.");
                 }
                 break;
             case 5:
-                Exercicis.exercici6();
+                ExercicisP1.exercici6();
                 break;
             case 6:
-                Exercicis.exercici7();
+                ExercicisP1.exercici7();
             case 7:
                 break;
             default:

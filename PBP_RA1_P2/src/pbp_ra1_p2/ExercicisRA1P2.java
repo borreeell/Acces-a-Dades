@@ -1,9 +1,10 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
+
 import java.util.Scanner;
 
-public class Exercicis {
+public class ExercicisRA1P2 {
     public static void exercici1(Scanner sc) {
         // Obre el fitxer usuaris.txt per escriure els usuaris
         try (FileWriter fw = new FileWriter("usuaris.txt", true)) {
