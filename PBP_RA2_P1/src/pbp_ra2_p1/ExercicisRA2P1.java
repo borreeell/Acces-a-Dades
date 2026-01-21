@@ -199,8 +199,10 @@ public class ExercicisRA2P1 {
         Connection conn = getConnection(); // Crea una connexio a la base de dades
 
         try {
+            // Demana la ID del jugador que vol editar l'usuari
             System.out.println("Entra la ID del jugador que vols editar: ");
             int idJugador = teclat.nextInt();
+            teclat.nextLine();
 
             // Consulta per obtenir les dades actuals del jugador
             String sqlSelect = "SELECT nom, nivell, copes, oro, gemes FROM jugadors WHERE id = ?";
@@ -211,13 +213,14 @@ public class ExercicisRA2P1 {
             rs = psSelect.executeQuery();
 
             if (rs.next()) {
+                // Guarda les dades actuals
                 String nomActual = rs.getString("nom");
                 int nivellActual = rs.getInt("nivell");
                 int oroActual = rs.getInt("oro");
                 int gemesActuals = rs.getInt("gemes");
                 int copesActuals = rs.getInt("copes");
 
-                // Demana els nous valors
+                // Demana els nous valors i modifica els actuals si canvien
                 System.out.println("Nom del jugador (" + nomActual + "): ");
                 String nomEditat = teclat.nextLine().trim();
                 if (nomEditat.isEmpty()) nomEditat = nomActual;
@@ -252,7 +255,7 @@ public class ExercicisRA2P1 {
                 psUpdate.executeUpdate();
                 psUpdate.close();
 
-                System.out.println("Valors actualitzats: Nom =" + nomEditat + ", Nivell =" + nouNivell + ", Copes =" + novesCopes + ", Oro =" + nouOro + ", Gemes =" + novesGemes);
+                System.out.println("Valors actualitzats: Nom = " + nomEditat + ", Nivell = " + nouNivell + ", Copes = " + novesCopes + ", Oro = " + nouOro + ", Gemes = " + novesGemes);
 
             } else {
                 System.out.println("No s'ha trobat cap jugador amb aquest ID");
@@ -324,7 +327,6 @@ public class ExercicisRA2P1 {
 
         teclat.close();
     }
-
     
     /**
      * Retorna l'últim ID dels jugadors
