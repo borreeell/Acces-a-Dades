@@ -8,7 +8,7 @@ import java.util.Scanner;
  */
 public class PBP_RA2_P1 {
 
-    /**1
+    /**
      * @param args the command line arguments
      * @throws java.sql.SQLException
      */
