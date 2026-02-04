@@ -19,7 +19,8 @@ public class PBP_RA2_P1 {
         
         menu();
         
-        while (opcio != 5) { // Mentre opcio sigui diferent de 5 (sortir)
+        // Mentre opcio sigui diferent de 5 (sortir)
+        while (opcio != 5) { 
             System.out.println("-- Escull una opcio: ");
             opcio = teclat.nextInt(); // Cridem metode nextInt per llegir el numero i guardar a opcio
             
