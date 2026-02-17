@@ -47,6 +47,7 @@ public class daoGeneric {
         }
         return retorn;
     }
+    
     public boolean delete(int id) {
        boolean retorn = false;
         Session sessio = factory.openSession();

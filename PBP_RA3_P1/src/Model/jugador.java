@@ -1,11 +1,34 @@
 package Model;
 
-public class jugador {
-    private String Nom;
+import java.io.Serializable;
+import javax.persistence.*;
+
+@Entity
+@Table(name = "jugador")
+public class jugador implements Serializable {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    
+    @Basic
+    @Column(name = "nom", length = 50, nullable = true)
+    private String Nom;
+    
+    @Basic
+    @Column(name = "copes", nullable = true)
     private int copes;
+    
+    @Basic
+    @Column(name = "gemes", nullable = true)
     private int gemes;
+    
+    @Basic
+    @Column(name = "nivell", nullable = true)
     private int nivell;
+    
+    @Basic 
+    @Column(name = "oro", nullable = true)
     private int oro;
     
     public jugador() {}
