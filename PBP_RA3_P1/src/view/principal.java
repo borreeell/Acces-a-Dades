@@ -6,10 +6,12 @@
 package view;
 
 import Model.jugador;
+import Model.partida;
 import dao.daoGeneric;
 import java.util.List;
 import java.util.Vector;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;;
 
 /**
  *
@@ -44,12 +46,28 @@ public class principal extends javax.swing.JFrame {
         TextOr = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         BotoCrear = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TaulaJugadors = new javax.swing.JTable();
         BotoLlistarJugadors = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        IdJugadorABorrar = new javax.swing.JTextField();
-        BotoEsborrarJugador = new javax.swing.JButton();
+        IdRegistreABorrar = new javax.swing.JTextField();
+        BotoEsborrar = new javax.swing.JButton();
+        BotoLlistarPartides = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Taula = new javax.swing.JTable();
+        BotoCrearPartida = new javax.swing.JButton();
+        TextTipus = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        TextTemps = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        TextResultat = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        TextIdJug2 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        TextIdJug1 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        RegistreABorrar = new javax.swing.JComboBox<>();
+        ComboBoxJugadors = new javax.swing.JComboBox<>();
+        jLabel13 = new javax.swing.JLabel();
+        BotoEditarJugador = new javax.swing.JButton();
 
         jTextField4.setText("jTextField1");
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
@@ -61,6 +79,7 @@ public class principal extends javax.swing.JFrame {
         jLabel4.setText("Nivell");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1307, 1307));
 
         jLabel1.setText("Nom");
 
@@ -114,39 +133,104 @@ public class principal extends javax.swing.JFrame {
             }
         });
 
-        TaulaJugadors.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Id", "Nom", "Copes", "Nivell", "Gemes", "Or"
-            }
-        ));
-        jScrollPane1.setViewportView(TaulaJugadors);
-
-        BotoLlistarJugadors.setText("Llistat Jugadors");
+        BotoLlistarJugadors.setText("Llistar Jugadors");
         BotoLlistarJugadors.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotoLlistarJugadorsActionPerformed(evt);
             }
         });
 
-        jLabel7.setText("Eliminar un jugador");
+        jLabel7.setText("Eliminar registre");
 
-        IdJugadorABorrar.setText("id jugador");
-        IdJugadorABorrar.addActionListener(new java.awt.event.ActionListener() {
+        IdRegistreABorrar.setText("id");
+
+        BotoEsborrar.setText("Esborrar");
+        BotoEsborrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IdJugadorABorrarActionPerformed(evt);
+                BotoEsborrarRegistre(evt);
             }
         });
 
-        BotoEsborrarJugador.setText("Esborrar");
-        BotoEsborrarJugador.addActionListener(new java.awt.event.ActionListener() {
+        BotoLlistarPartides.setText("Llistar partides");
+        BotoLlistarPartides.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotoEsborrarJugadorActionPerformed(evt);
+                BotoLlistarPartidesActionPerformed(evt);
+            }
+        });
+
+        Taula.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane2.setViewportView(Taula);
+
+        BotoCrearPartida.setText("Crear Partida");
+        BotoCrearPartida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotoCrearPartidaActionPerformed(evt);
+            }
+        });
+
+        TextTipus.setText("Tipus");
+        TextTipus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextTipusActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Tipus");
+
+        TextTemps.setText("Temps");
+        TextTemps.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextTempsActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("Temps");
+
+        TextResultat.setText("Resultat");
+        TextResultat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextResultatActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("Resultat");
+
+        TextIdJug2.setText("IdJug2");
+        TextIdJug2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextIdJug2ActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setText("Id Jug2");
+
+        TextIdJug1.setText("IdJug1");
+        TextIdJug1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextIdJug1ActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setText("Id Jug1");
+
+        RegistreABorrar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Partides", "Jugadors" }));
+
+        jLabel13.setText("Editar jugador");
+
+        BotoEditarJugador.setText("Editar Jugador");
+        BotoEditarJugador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotoEditarJugadorActionPerformed(evt);
             }
         });
 
@@ -155,74 +239,142 @@ public class principal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(519, 519, 519)
-                .addComponent(BotoLlistarJugadors)
-                .addGap(40, 40, 40)
-                .addComponent(jLabel7)
-                .addGap(18, 18, 18)
-                .addComponent(IdJugadorABorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BotoEsborrarJugador)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(TextNom, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(TextCopes, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(TextNivell, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(TextGemes, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(TextOr, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotoCrear))
-                .addGap(54, 54, 54))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1)
+                                            .addComponent(TextNivell, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel5)
+                                            .addComponent(TextGemes, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel6)
+                                            .addComponent(TextOr, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(BotoCrear)
+                                            .addComponent(TextNom, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel2)
+                                            .addComponent(TextCopes, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel3))
+                                        .addGap(90, 90, 90)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel10)
+                                            .addComponent(jLabel12)
+                                            .addComponent(TextResultat, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel9)
+                                            .addComponent(TextTemps, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel8)
+                                            .addComponent(TextTipus, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(BotoCrearPartida)
+                                            .addComponent(TextIdJug1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel11)
+                                            .addComponent(TextIdJug2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(BotoLlistarJugadors))
+                                .addGap(18, 18, 18)
+                                .addComponent(BotoLlistarPartides)
+                                .addGap(33, 33, 33)
+                                .addComponent(jLabel7))
+                            .addComponent(jLabel13))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ComboBoxJugadors, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(RegistreABorrar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addComponent(IdRegistreABorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BotoEsborrar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(BotoEditarJugador))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1247, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(TextNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TextCopes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addGap(8, 8, 8)
-                .addComponent(TextNivell, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(TextGemes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TextOr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BotoCrear)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(BotoLlistarJugadors)
-                            .addComponent(jLabel7)
-                            .addComponent(IdJugadorABorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BotoEsborrarJugador)))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(TextNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TextCopes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TextNivell, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TextGemes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6)
+                        .addGap(4, 4, 4)
+                        .addComponent(TextOr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BotoCrear))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(116, Short.MAX_VALUE))
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TextIdJug1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel11)
+                        .addGap(4, 4, 4)
+                        .addComponent(TextIdJug2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TextResultat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TextTemps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TextTipus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BotoCrearPartida)))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ComboBoxJugadors, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13)
+                    .addComponent(BotoEditarJugador))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BotoLlistarJugadors)
+                    .addComponent(jLabel7)
+                    .addComponent(IdRegistreABorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotoEsborrar)
+                    .addComponent(BotoLlistarPartides)
+                    .addComponent(RegistreABorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void carregarJugadorsCombo() {
+        ComboBoxJugadors.removeAllItems();
+        
+        List<jugador> jugadors = daoGeneric.getInstance().readJugador();
+        
+        for (jugador j : jugadors) {
+            ComboBoxJugadors.addItem(j.getId() + " - " + j.getNom());
+        }
+    }
+    
     private void TextNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextNomActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextNomActionPerformed
@@ -249,6 +401,7 @@ public class principal extends javax.swing.JFrame {
 
     private void BotoCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotoCrearActionPerformed
         jugador jug1 = new jugador();
+        
         jug1.setNom(TextNom.getText());
         jug1.setCopes(Integer.parseInt(TextCopes.getText()));
         jug1.setGemes(Integer.parseInt(TextGemes.getText()));
@@ -258,37 +411,122 @@ public class principal extends javax.swing.JFrame {
         daoGeneric.getInstance().create(jug1);  
     }//GEN-LAST:event_BotoCrearActionPerformed
 
-    private void BotoLlistarJugadorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotoLlistarJugadorsActionPerformed
-        List llista = (List) daoGeneric.getInstance().readJugador();
-        DefaultTableModel model = (DefaultTableModel) TaulaJugadors.getModel();
-        model.setRowCount(0);
-        for (int i = 0; i < llista.size(); i++) {
-            
-            jugador jug = (jugador) llista.get(i);
-            //System.out.println(jug.getNom());
-            Vector oneRow = new Vector();
-            oneRow.add(Integer.toString(jug.getId()));
-            oneRow.add(jug.getNom());
-            oneRow.add(Integer.toString(jug.getCopes()));
-            oneRow.add(Integer.toString(jug.getNivell()));
-            oneRow.add(Integer.toString(jug.getGemes()));
-            oneRow.add(Integer.toString(jug.getOro()));
-            //oneRow.add(jug.getClan());
-            model.addRow(oneRow);
-            
+    private void BotoEsborrarRegistre(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotoEsborrarRegistre
+        String seleccio = (String) RegistreABorrar.getSelectedItem(); // Jugadors o Partides
+        int id;
+        
+        try {
+            id = Integer.parseInt(IdRegistreABorrar.getText().trim());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Introdueix un ID valida");
+            return;
         }
         
-        TaulaJugadors.setModel(model);
+        if (seleccio.equals("Partides")) {
+            daoGeneric.getInstance().deletePartida(id);
+            JOptionPane.showMessageDialog(this, "Partida eliminada");
+        } else if (seleccio.equals("Jugadors")) {
+            daoGeneric.getInstance().deleteJugador(id);
+            JOptionPane.showMessageDialog(this, "Jugador eliminat");
+        }
+    }//GEN-LAST:event_BotoEsborrarRegistre
+
+    private void BotoLlistarJugadorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotoLlistarJugadorsActionPerformed
+        DefaultTableModel model = new DefaultTableModel();
+        
+        model.addColumn("Id");
+        model.addColumn("Nom");
+        model.addColumn("Copes");
+        model.addColumn("Nivell");
+        model.addColumn("Gemes");
+        model.addColumn("Or");
+        
+        List<jugador> jugadors = daoGeneric.getInstance().readJugador();
+        
+        for (jugador j : jugadors) {
+            model.addRow(new Object[] {
+                j.getId(),
+                j.getNom(),
+                j.getCopes(),
+                j.getNivell(),
+                j.getGemes(),
+                j.getOro(),
+            });
+        }
+
+        Taula.setModel(model);
     }//GEN-LAST:event_BotoLlistarJugadorsActionPerformed
 
-    private void IdJugadorABorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdJugadorABorrarActionPerformed
+    private void BotoLlistarPartidesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotoLlistarPartidesActionPerformed
+        DefaultTableModel model = new DefaultTableModel();
+        
+        model.addColumn("Id");
+        model.addColumn("Id Jug1");
+        model.addColumn("Id Jug2");
+        model.addColumn("Resultat");
+        model.addColumn("Temps");
+        model.addColumn("Tipus");
+        
+        List<partida> partides = daoGeneric.getInstance().readPartides();
+        
+        for (partida p : partides) {
+            model.addRow(new Object[] {
+                p.getId(),
+                p.getIdJug1(),
+                p.getIdJug2(),
+                p.getResultat(),
+                p.getTemps(),
+                p.getTipus(),
+            });
+        }
+        
+        Taula.setModel(model);
+    }//GEN-LAST:event_BotoLlistarPartidesActionPerformed
+
+    private void BotoCrearPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotoCrearPartidaActionPerformed
+        partida p1 = new partida();
+        
+        p1.setIdJug1(Integer.parseInt(TextIdJug1.getText()));
+        p1.setIdJug2(Integer.parseInt(TextIdJug2.getText()));
+        p1.setResultat(TextResultat.getText());
+        p1.setTemps(TextTemps.getText());
+        p1.setTipus(TextTipus.getText());
+        
+        daoGeneric.getInstance().create(p1);
+    }//GEN-LAST:event_BotoCrearPartidaActionPerformed
+
+    private void TextTipusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextTipusActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_IdJugadorABorrarActionPerformed
+    }//GEN-LAST:event_TextTipusActionPerformed
 
-    private void BotoEsborrarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotoEsborrarJugadorActionPerformed
-        daoGeneric.getInstance().delete(Integer.parseInt(IdJugadorABorrar.getText()));
-    }//GEN-LAST:event_BotoEsborrarJugadorActionPerformed
+    private void TextTempsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextTempsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextTempsActionPerformed
 
+    private void TextResultatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextResultatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextResultatActionPerformed
+
+    private void TextIdJug2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextIdJug2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextIdJug2ActionPerformed
+
+    private void TextIdJug1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextIdJug1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextIdJug1ActionPerformed
+
+    private void BotoEditarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotoEditarJugadorActionPerformed
+        String seleccio = (String) ComboBoxJugadors.getSelectedItem();
+        if (seleccio == null) return;
+        
+        int id = Integer.parseInt(seleccio.split(" - ")[0]);
+        jugador j = daoGeneric.getInstance().findJugadorById(id);
+        
+        DialogEditarJugador dialog = new DialogEditarJugador(this, true, j);
+        
+        carregarJugadorsCombo();
+    }//GEN-LAST:event_BotoEditarJugadorActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -326,23 +564,39 @@ public class principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotoCrear;
-    private javax.swing.JButton BotoEsborrarJugador;
+    private javax.swing.JButton BotoCrearPartida;
+    private javax.swing.JButton BotoEditarJugador;
+    private javax.swing.JButton BotoEsborrar;
     private javax.swing.JButton BotoLlistarJugadors;
-    private javax.swing.JTextField IdJugadorABorrar;
-    private javax.swing.JTable TaulaJugadors;
+    private javax.swing.JButton BotoLlistarPartides;
+    private javax.swing.JComboBox<String> ComboBoxJugadors;
+    private javax.swing.JTextField IdRegistreABorrar;
+    private javax.swing.JComboBox<String> RegistreABorrar;
+    private javax.swing.JTable Taula;
     private javax.swing.JTextField TextCopes;
     private javax.swing.JTextField TextGemes;
+    private javax.swing.JTextField TextIdJug1;
+    private javax.swing.JTextField TextIdJug2;
     private javax.swing.JTextField TextNivell;
     private javax.swing.JTextField TextNom;
     private javax.swing.JTextField TextOr;
+    private javax.swing.JTextField TextResultat;
+    private javax.swing.JTextField TextTemps;
+    private javax.swing.JTextField TextTipus;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }

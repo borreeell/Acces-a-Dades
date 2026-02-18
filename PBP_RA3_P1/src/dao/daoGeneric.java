@@ -2,6 +2,8 @@ package dao;
 
 import java.util.List;
 import Model.jugador;
+import Model.partida;
+import net.sf.ehcache.hibernate.HibernateUtil;
 import org.hibernate.*;
 import util.NewHibernateUtil;
 
@@ -48,7 +50,7 @@ public class daoGeneric {
         return retorn;
     }
     
-    public boolean delete(int id) {
+    public boolean deleteJugador(int id) {
        boolean retorn = false;
         Session sessio = factory.openSession();
         try{
@@ -56,7 +58,7 @@ public class daoGeneric {
             
             jugador o = (jugador) sessio.load(jugador.class, id);
        
-      //first load() method example
+            //first load() method example
      
             sessio.delete(o);
             transaction.commit();
@@ -72,6 +74,29 @@ public class daoGeneric {
         }
         return retorn;
     }
+    
+    public boolean deletePartida(int id) {
+        boolean retorn = false;
+        Session sessio = factory.openSession();
+        
+        try {
+            transaction = sessio.beginTransaction();
+            partida o = (partida) sessio.load(partida.class, id);
+            
+            sessio.delete(o);
+            transaction.commit();
+            retorn = true;
+        } catch (Exception e) {
+            transaction.rollback();
+            retorn = false;
+            e.printStackTrace();
+        } finally {
+            sessio.close();
+        }
+        
+        return retorn;
+    }
+    
     public List readJugador(){
         List result=null;
         try {
@@ -85,6 +110,38 @@ public class daoGeneric {
         he.printStackTrace();
     }
         return result;
+    }
+    
+    public List readPartides() {
+        List result = null;
+        
+        try {
+            Session sessio = factory.openSession();
+            sessio.beginTransaction();
+            Query q = sessio.createQuery("from partida");
+            result = (List) q.list();
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+        
+        return result;
+    }
+    
+    public jugador findJugadorById(int id) {
+        Session session = factory.openSession();
+        jugador j = (jugador) session.get(jugador.class, id);
+        
+        session.close();
+        return j;
+    }
+    
+    public void updateJugador(jugador j) {
+        Session session = factory.openSession();
+        Transaction tx = session.beginTransaction();
+        
+        session.update(j);
+        tx.commit();
+        session.close();
     }
 }
 
