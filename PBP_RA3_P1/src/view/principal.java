@@ -24,6 +24,7 @@ public class principal extends javax.swing.JFrame {
      */
     public principal() {
         initComponents();
+        carregarJugadorsCombo();
     }
 
     /**
@@ -523,6 +524,9 @@ public class principal extends javax.swing.JFrame {
         jugador j = daoGeneric.getInstance().findJugadorById(id);
         
         DialogEditarJugador dialog = new DialogEditarJugador(this, true, j);
+        dialog.pack();
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
         
         carregarJugadorsCombo();
     }//GEN-LAST:event_BotoEditarJugadorActionPerformed

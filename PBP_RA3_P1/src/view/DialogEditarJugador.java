@@ -6,6 +6,9 @@
 package view;
 
 import Model.jugador;
+import dao.daoGeneric;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,16 +16,30 @@ import Model.jugador;
  */
 public class DialogEditarJugador extends javax.swing.JDialog {
 
+    private jugador jugador;
+    
     /**
      * Creates new form DialogEditarJugador
      */
-    public DialogEditarJugador(java.awt.Frame parent, boolean modal) {
+    public DialogEditarJugador(java.awt.Frame parent, boolean modal, jugador j) {
         super(parent, modal);
         initComponents();
+        this.jugador = j;
+        
+        TextFieldNom.setText(j.getNom());
+        TextFieldNivell.setText(String.valueOf(j.getNivell()));
+        TextFieldOr.setText(String.valueOf(j.getOro()));
+        TextFieldCopes.setText(String.valueOf(j.getCopes()));
+        TextFieldGemes.setText(String.valueOf(j.getGemes())); 
     }
 
     DialogEditarJugador(principal aThis, boolean b, jugador j) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this((java.awt.Frame) aThis, b, j);
+    }
+
+    private DialogEditarJugador(JFrame jFrame, boolean b) {
+        super(jFrame, b);
+        initComponents();
     }
 
     /**
@@ -32,15 +49,25 @@ public class DialogEditarJugador extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel6 = new javax.swing.JLabel();
+        TextFieldCopes1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         TextFieldNom = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         TextFieldNivell = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        TextFieldOr = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         TextFieldCopes = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        TextFieldGemes = new javax.swing.JTextField();
+        BotoGuardarJugador = new javax.swing.JButton();
+        BotoCancelar = new javax.swing.JButton();
+
+        jLabel6.setText("Copes");
+
+        TextFieldCopes1.setText("Copes");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -57,11 +84,29 @@ public class DialogEditarJugador extends javax.swing.JDialog {
 
         jLabel4.setText("Or");
 
-        jTextField1.setText("Or");
+        TextFieldOr.setText("Or");
 
         jLabel5.setText("Copes");
 
         TextFieldCopes.setText("Copes");
+
+        jLabel7.setText("Gemes");
+
+        TextFieldGemes.setText("Gemes");
+        TextFieldGemes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextFieldGemesActionPerformed(evt);
+            }
+        });
+
+        BotoGuardarJugador.setText("Guardar");
+        BotoGuardarJugador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotoGuardarJugadorActionPerformed(evt);
+            }
+        });
+
+        BotoCancelar.setText("Cancelar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,18 +119,26 @@ public class DialogEditarJugador extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(BotoGuardarJugador)
                     .addComponent(jLabel5)
                     .addComponent(jLabel4)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel2)
-                        .addComponent(jLabel3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(TextFieldNivell, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(TextFieldNom, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField1)
-                    .addComponent(TextFieldCopes, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE))
-                .addGap(130, 130, 130))
+                        .addComponent(jLabel3))
+                    .addComponent(jLabel7))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(TextFieldNivell, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(TextFieldNom, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(TextFieldOr)
+                            .addComponent(TextFieldCopes, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+                            .addComponent(TextFieldGemes, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(BotoCancelar)))
+                .addGap(105, 105, 105))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,16 +156,40 @@ public class DialogEditarJugador extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TextFieldOr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(TextFieldCopes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextFieldGemes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BotoGuardarJugador)
+                    .addComponent(BotoCancelar))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void TextFieldGemesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldGemesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextFieldGemesActionPerformed
+
+    private void BotoGuardarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotoGuardarJugadorActionPerformed
+        jugador.setNom(TextFieldNom.getText());
+        jugador.setNivell(Integer.parseInt(TextFieldNivell.getText()));
+        jugador.setOro(Integer.parseInt(TextFieldOr.getText()));
+        jugador.setCopes(Integer.parseInt(TextFieldCopes.getText()));
+        jugador.setGemes(Integer.parseInt(TextFieldGemes.getText()));
+        
+        daoGeneric.getInstance().updateJugador(jugador);
+        JOptionPane.showMessageDialog(this, "Jugador actualitzat");
+        this.dispose();
+    }//GEN-LAST:event_BotoGuardarJugadorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -157,14 +234,20 @@ public class DialogEditarJugador extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotoCancelar;
+    private javax.swing.JButton BotoGuardarJugador;
     private javax.swing.JTextField TextFieldCopes;
+    private javax.swing.JTextField TextFieldCopes1;
+    private javax.swing.JTextField TextFieldGemes;
     private javax.swing.JTextField TextFieldNivell;
     private javax.swing.JTextField TextFieldNom;
+    private javax.swing.JTextField TextFieldOr;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
 }
