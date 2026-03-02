@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 import Model.jugador;
 import Model.partida;
+import java.util.Arrays;
 import net.sf.ehcache.hibernate.HibernateUtil;
 import org.hibernate.*;
 import util.NewHibernateUtil;
@@ -142,6 +143,29 @@ public class daoGeneric {
         session.update(j);
         tx.commit();
         session.close();
+    }
+    
+    public List<jugador> trobarParellaJugadors() {
+        Session session = factory.openSession();
+        List<jugador> tots = session.createCriteria(jugador.class).list();
+        session.close();
+        
+        if (tots.size() < 2) return null;
+        
+        for (int i = 0; i < tots.size(); i++) {
+            for (int j = i + 1; j < tots.size(); j++) {
+                jugador jug1 = tots.get(i);
+                jugador jug2 = tots.get(j);
+                
+                int diff = Math.abs(jug1.getNivell() - jug2.getNivell());
+                
+                if (diff <= 2) {
+                    return Arrays.asList(jug1, jug2);
+                }
+            }
+        }
+        
+        return Arrays.asList(tots.get(0), tots.get(1));
     }
 }
 
