@@ -1,5 +1,6 @@
 package dao;
 
+import Model.clan;
 import java.util.List;
 import Model.jugador;
 import Model.partida;
@@ -98,6 +99,30 @@ public class daoGeneric {
         return retorn;
     }
     
+    public boolean deleteClan(int id) {
+        boolean retorn = false;
+        Session sessio = factory.openSession();
+        
+        try {
+            transaction = sessio.beginTransaction();
+            clan o = (clan) sessio.load(clan.class, id);
+            
+            // Esborrar clan de la base de dades:           
+            sessio.delete(o);
+            transaction.commit();
+            retorn = true;
+        } catch (Exception e) {
+            // Si falla, fer un rollback:
+            transaction.rollback();
+            retorn = false;
+            e.printStackTrace();
+        } finally {
+            sessio.close();
+        }
+        
+        return retorn;
+    }
+    
     public List readJugador(){
         List result=null;
         try {
@@ -128,6 +153,24 @@ public class daoGeneric {
         return result;
     }
     
+    public List readClans() {
+        List result = null;
+        
+        try {
+            // Obrim una sessio
+            Session sessio = factory.openSession();
+            sessio.beginTransaction();
+            
+            // Obtenim tots els clans i els guardem en una llista
+            Query q = sessio.createQuery("from clan");
+            result = (List) q.list();
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+        
+        return result;
+    }
+    
     public jugador findJugadorById(int id) {
         Session session = factory.openSession();
         jugador j = (jugador) session.get(jugador.class, id);
@@ -136,11 +179,29 @@ public class daoGeneric {
         return j;
     }
     
+    public clan findClanById(int id) {
+        Session session = factory.openSession();
+        clan c = (clan) session.get(clan.class, id);
+        
+        session.close();
+        return c;
+    }
+    
     public void updateJugador(jugador j) {
         Session session = factory.openSession();
         Transaction tx = session.beginTransaction();
         
         session.update(j);
+        tx.commit();
+        session.close();
+    }
+    
+    public void updateClan(clan c) {
+        Session session = factory.openSession();
+        Transaction tx = session.beginTransaction();
+        
+        // Actualitzem el clan:
+        session.update(c);
         tx.commit();
         session.close();
     }

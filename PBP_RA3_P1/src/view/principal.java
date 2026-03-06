@@ -5,6 +5,7 @@
  */
 package view;
 
+import Model.clan;
 import Model.jugador;
 import Model.partida;
 import dao.daoGeneric;
@@ -18,7 +19,7 @@ import javax.swing.table.DefaultTableModel;;
  * @author AluCiclesGS1
  */
 public class principal extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form principal
      */
@@ -36,6 +37,8 @@ public class principal extends javax.swing.JFrame {
 
         jTextField4 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        TextTipus2 = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         TextNom = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -70,6 +73,22 @@ public class principal extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         BotoEditarJugador = new javax.swing.JButton();
         BotoSimularCombat = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
+        TextNomClan = new javax.swing.JTextField();
+        TextNivellClan = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        TextCopesClan = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        TextJugadorAdminClan = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        TextTipusClan = new javax.swing.JTextField();
+        BotoCrearClan = new javax.swing.JButton();
+        BotoLlistarClans = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
+        TextClanAssociar1 = new javax.swing.JTextField();
+        TextClanAssociar2 = new javax.swing.JTextField();
+        BotoAssociarClans = new javax.swing.JButton();
 
         jTextField4.setText("jTextField1");
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
@@ -80,8 +99,16 @@ public class principal extends javax.swing.JFrame {
 
         jLabel4.setText("Nivell");
 
+        TextTipus2.setText("Tipus");
+        TextTipus2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextTipus2ActionPerformed(evt);
+            }
+        });
+
+        jLabel19.setText("Tipus");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1307, 1307));
 
         jLabel1.setText("Nom");
 
@@ -225,7 +252,7 @@ public class principal extends javax.swing.JFrame {
 
         jLabel12.setText("Id Jug1");
 
-        RegistreABorrar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Partides", "Jugadors" }));
+        RegistreABorrar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Partides", "Jugadors", "Clans" }));
 
         jLabel13.setText("Editar jugador");
 
@@ -243,6 +270,78 @@ public class principal extends javax.swing.JFrame {
             }
         });
 
+        jLabel14.setText("Nom");
+
+        TextNomClan.setText("Nom clan");
+        TextNomClan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextNomClanActionPerformed(evt);
+            }
+        });
+
+        TextNivellClan.setText("Nivell clan");
+        TextNivellClan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextNivellClanActionPerformed(evt);
+            }
+        });
+
+        jLabel15.setText("Nivell");
+
+        jLabel16.setText("Copes");
+
+        TextCopesClan.setText("Copes clan");
+        TextCopesClan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextCopesClanActionPerformed(evt);
+            }
+        });
+
+        jLabel17.setText("Jugador Admin");
+
+        TextJugadorAdminClan.setText("Admin clan");
+        TextJugadorAdminClan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextJugadorAdminClanActionPerformed(evt);
+            }
+        });
+
+        jLabel18.setText("Tipus");
+
+        TextTipusClan.setText("Tipus clan");
+        TextTipusClan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextTipusClanActionPerformed(evt);
+            }
+        });
+
+        BotoCrearClan.setText("Crear Clan");
+        BotoCrearClan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotoCrearClanActionPerformed(evt);
+            }
+        });
+
+        BotoLlistarClans.setText("Llistar clans");
+        BotoLlistarClans.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotoLlistarClansActionPerformed(evt);
+            }
+        });
+
+        jLabel21.setText("Associar clans");
+
+        TextClanAssociar1.setText("Id clan 1");
+
+        TextClanAssociar2.setText("Id clan 2");
+
+        BotoAssociarClans.setText("Associar clans");
+        BotoAssociarClans.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotoAssociarClansActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -252,10 +351,9 @@ public class principal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(70, 70, 70)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel13)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel1)
                                             .addComponent(TextNivell, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -281,17 +379,37 @@ public class principal extends javax.swing.JFrame {
                                             .addComponent(jLabel11)
                                             .addComponent(TextIdJug2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(BotoCrearPartida))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel16)
+                                            .addComponent(jLabel14)
+                                            .addComponent(TextCopesClan, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel17)
+                                            .addComponent(TextJugadorAdminClan, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel18)
+                                            .addComponent(TextTipusClan, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(TextNomClan, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel15)
+                                            .addComponent(TextNivellClan, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(BotoCrearClan)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
                                         .addComponent(BotoLlistarJugadors)
-                                        .addGap(18, 18, 18)))
-                                .addComponent(BotoLlistarPartides)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(BotoLlistarPartides)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(BotoLlistarClans)
+                                        .addGap(42, 42, 42)))
                                 .addGap(33, 33, 33)
-                                .addComponent(jLabel7)))
+                                .addComponent(jLabel7))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel21)
+                                .addComponent(jLabel13)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(ComboBoxJugadors, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(RegistreABorrar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(RegistreABorrar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(TextClanAssociar1))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(13, 13, 13)
@@ -302,7 +420,12 @@ public class principal extends javax.swing.JFrame {
                                 .addGap(12, 12, 12)
                                 .addComponent(BotoEditarJugador)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(BotoSimularCombat))))
+                                .addComponent(BotoSimularCombat))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(TextClanAssociar2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(BotoAssociarClans))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1247, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -314,55 +437,86 @@ public class principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TextIdJug1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TextIdJug1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel11)
+                                .addGap(4, 4, 4)
+                                .addComponent(TextIdJug2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TextResultat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TextTemps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TextTipus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(BotoCrearPartida))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(TextNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TextCopes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TextNivell, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TextGemes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel6)
+                                .addGap(4, 4, 4)
+                                .addComponent(TextOr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(BotoCrear)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel21)
+                            .addComponent(TextClanAssociar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TextClanAssociar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BotoAssociarClans))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel11)
-                        .addGap(4, 4, 4)
-                        .addComponent(TextIdJug2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TextResultat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TextTemps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TextTipus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BotoCrearPartida))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ComboBoxJugadors, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13)
+                            .addComponent(BotoEditarJugador)
+                            .addComponent(BotoSimularCombat)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(TextNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2)
+                        .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TextCopes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TextNomClan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TextNivell, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TextGemes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)
+                        .addComponent(jLabel15)
                         .addGap(4, 4, 4)
-                        .addComponent(TextOr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TextNivellClan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BotoCrear)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ComboBoxJugadors, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13)
-                    .addComponent(BotoEditarJugador)
-                    .addComponent(BotoSimularCombat))
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TextCopesClan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TextJugadorAdminClan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TextTipusClan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BotoCrearClan)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotoLlistarJugadors)
@@ -370,10 +524,11 @@ public class principal extends javax.swing.JFrame {
                     .addComponent(IdRegistreABorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BotoEsborrar)
                     .addComponent(BotoLlistarPartides)
-                    .addComponent(RegistreABorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
-                .addContainerGap())
+                    .addComponent(RegistreABorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotoLlistarClans))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
+                .addGap(33, 33, 33))
         );
 
         pack();
@@ -384,9 +539,9 @@ public class principal extends javax.swing.JFrame {
         
         List<jugador> jugadors = daoGeneric.getInstance().readJugador();
         
-        for (jugador j : jugadors) {
+        jugadors.forEach((j) -> {
             ComboBoxJugadors.addItem(j.getId() + " - " + j.getNom());
-        }
+        });
     }
     
     private void TextNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextNomActionPerformed
@@ -426,9 +581,10 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_BotoCrearActionPerformed
 
     private void BotoEsborrarRegistre(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotoEsborrarRegistre
-        String seleccio = (String) RegistreABorrar.getSelectedItem(); // Jugadors o Partides
+        String seleccio = (String) RegistreABorrar.getSelectedItem(); // Jugadors, Partides o Clans
         int id;
         
+        // Obte la id del registre a esborrar:
         try {
             id = Integer.parseInt(IdRegistreABorrar.getText().trim());
         } catch (NumberFormatException e) {
@@ -436,12 +592,22 @@ public class principal extends javax.swing.JFrame {
             return;
         }
         
-        if (seleccio.equals("Partides")) {
-            daoGeneric.getInstance().deletePartida(id);
-            JOptionPane.showMessageDialog(this, "Partida eliminada");
-        } else if (seleccio.equals("Jugadors")) {
-            daoGeneric.getInstance().deleteJugador(id);
-            JOptionPane.showMessageDialog(this, "Jugador eliminat");
+        // Eliminem el registre que estigui seleccionat en el combo box:
+        switch (seleccio) {
+            case "Partides":
+                daoGeneric.getInstance().deletePartida(id);
+                JOptionPane.showMessageDialog(this, "Partida eliminada");
+                break;
+            case "Jugadors":
+                daoGeneric.getInstance().deleteJugador(id);
+                JOptionPane.showMessageDialog(this, "Jugador eliminat");
+                break;
+            case "Clans":
+                daoGeneric.getInstance().deleteClan(id);
+                JOptionPane.showMessageDialog(this, "Clan Esborrat");
+                break;
+            default:
+                break;
         }
     }//GEN-LAST:event_BotoEsborrarRegistre
 
@@ -457,7 +623,7 @@ public class principal extends javax.swing.JFrame {
         
         List<jugador> jugadors = daoGeneric.getInstance().readJugador();
         
-        for (jugador j : jugadors) {
+        jugadors.forEach((j) -> {
             model.addRow(new Object[] {
                 j.getId(),
                 j.getNom(),
@@ -466,7 +632,7 @@ public class principal extends javax.swing.JFrame {
                 j.getGemes(),
                 j.getOro(),
             });
-        }
+        });
 
         Taula.setModel(model);
     }//GEN-LAST:event_BotoLlistarJugadorsActionPerformed
@@ -483,7 +649,7 @@ public class principal extends javax.swing.JFrame {
         
         List<partida> partides = daoGeneric.getInstance().readPartides();
         
-        for (partida p : partides) {
+        partides.forEach((p) -> {
             model.addRow(new Object[] {
                 p.getId(),
                 p.getIdJug1(),
@@ -492,7 +658,7 @@ public class principal extends javax.swing.JFrame {
                 p.getTemps(),
                 p.getTipus(),
             });
-        }
+        });
         
         Taula.setModel(model);
     }//GEN-LAST:event_BotoLlistarPartidesActionPerformed
@@ -551,6 +717,97 @@ public class principal extends javax.swing.JFrame {
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
     }//GEN-LAST:event_BotoSimularCombatActionPerformed
+
+    private void TextNomClanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextNomClanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextNomClanActionPerformed
+
+    private void TextCopesClanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextCopesClanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextCopesClanActionPerformed
+
+    private void TextJugadorAdminClanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextJugadorAdminClanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextJugadorAdminClanActionPerformed
+
+    private void TextTipusClanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextTipusClanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextTipusClanActionPerformed
+
+    private void BotoCrearClanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotoCrearClanActionPerformed
+        clan c1 = new clan();
+        
+        // Obtenim els valors dels camps de text:
+        c1.setNom(TextNomClan.getText());
+        c1.setNivell(Integer.parseInt(TextNivellClan.getText()));
+        c1.setCopes(Integer.parseInt(TextCopesClan.getText()));
+        c1.setJugadorAdmin(Integer.parseInt(TextJugadorAdminClan.getText()));
+        c1.setTipus(TextTipusClan.getText());
+        
+        // Creem l'objecte:
+        daoGeneric.getInstance().create(c1);
+    }//GEN-LAST:event_BotoCrearClanActionPerformed
+
+    private void BotoLlistarClansActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotoLlistarClansActionPerformed
+        DefaultTableModel model = new DefaultTableModel();
+        
+        // Afegim les columnes a la taula:
+        model.addColumn("Id");
+        model.addColumn("Nom");
+        model.addColumn("Nivell");
+        model.addColumn("Copes");
+        model.addColumn("Jugador Admin");
+        model.addColumn("Tipus");
+        model.addColumn("Clan associat");
+        
+        List<clan> clans = daoGeneric.getInstance().readClans();
+        
+        // Recorrem tots els clans de la llista i els mostrem a la taula:
+        clans.forEach((c) -> {
+            model.addRow(new Object[] {
+                c.getId(),
+                c.getNom(),
+                c.getNivell(),
+                c.getCopes(),
+                c.getJugadorAdmin(),
+                c.getTipus(),
+                c.getIdClanAssociat(),
+            });
+        });
+        
+        Taula.setModel(model);
+    }//GEN-LAST:event_BotoLlistarClansActionPerformed
+
+    private void TextTipus2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextTipus2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextTipus2ActionPerformed
+
+    private void TextNivellClanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextNivellClanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextNivellClanActionPerformed
+
+    private void BotoAssociarClansActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotoAssociarClansActionPerformed
+        // Obtenim les IDs dels clans a associar:
+        int idClan1 = Integer.parseInt(TextClanAssociar1.getText());
+        int idClan2 = Integer.parseInt(TextClanAssociar2.getText());
+        
+        // Busquem els dos clans per la ID:
+        clan c1 = daoGeneric.getInstance().findClanById(idClan1);
+        clan c2 = daoGeneric.getInstance().findClanById(idClan2);
+        
+        // Abans d'associar, comprovem que els clans no estiguin ja associats amb un altre clan:
+        if (c1.getIdClanAssociat() == 0 && c2.getIdClanAssociat() == 0) {
+            c1.setIdClanAssociat(idClan2);
+            c2.setIdClanAssociat(idClan1);
+        
+            daoGeneric.getInstance().updateClan(c1);
+            daoGeneric.getInstance().updateClan(c2);  
+        } else if (c1.getIdClanAssociat() != 0) {
+            JOptionPane.showMessageDialog(this, "El clan: " + c1.getNom() + " ja esta associat amb el clan: " + daoGeneric.getInstance().findClanById(c1.getIdClanAssociat()).getNom());
+        } else if (c2.getIdClanAssociat() != 0) {
+            JOptionPane.showMessageDialog(this, "El clan: " + c2.getNom() + " ja esta associat amb el clan: " + daoGeneric.getInstance().findClanById(c2.getIdClanAssociat()).getNom());
+        }
+    }//GEN-LAST:event_BotoAssociarClansActionPerformed
     
     /**
      * @param args the command line arguments
@@ -588,10 +845,13 @@ public class principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotoAssociarClans;
     private javax.swing.JButton BotoCrear;
+    private javax.swing.JButton BotoCrearClan;
     private javax.swing.JButton BotoCrearPartida;
     private javax.swing.JButton BotoEditarJugador;
     private javax.swing.JButton BotoEsborrar;
+    private javax.swing.JButton BotoLlistarClans;
     private javax.swing.JButton BotoLlistarJugadors;
     private javax.swing.JButton BotoLlistarPartides;
     private javax.swing.JButton BotoSimularCombat;
@@ -599,22 +859,37 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JTextField IdRegistreABorrar;
     private javax.swing.JComboBox<String> RegistreABorrar;
     private javax.swing.JTable Taula;
+    private javax.swing.JTextField TextClanAssociar1;
+    private javax.swing.JTextField TextClanAssociar2;
     private javax.swing.JTextField TextCopes;
+    private javax.swing.JTextField TextCopesClan;
     private javax.swing.JTextField TextGemes;
     private javax.swing.JTextField TextIdJug1;
     private javax.swing.JTextField TextIdJug2;
+    private javax.swing.JTextField TextJugadorAdminClan;
     private javax.swing.JTextField TextNivell;
+    private javax.swing.JTextField TextNivellClan;
     private javax.swing.JTextField TextNom;
+    private javax.swing.JTextField TextNomClan;
     private javax.swing.JTextField TextOr;
     private javax.swing.JTextField TextResultat;
     private javax.swing.JTextField TextTemps;
     private javax.swing.JTextField TextTipus;
+    private javax.swing.JTextField TextTipus2;
+    private javax.swing.JTextField TextTipusClan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

@@ -59,5 +59,6 @@ Contributor(s):
     <property name="hibernate.hbm2ddl.auto">update</property>
     <mapping class="Model.jugador"/>
     <mapping class="Model.partida"/>
+    <mapping class="Model.clan"/>
   </session-factory>
 </hibernate-configuration>
