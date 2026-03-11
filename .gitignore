@@ -38,6 +38,9 @@ arxiuPdf.pdf
 nom usuaris.txt
 usuaris.txt
 
+# Fitxers Python
+__pycache__/*
+
 ## Fitxers examens
 PBP_RA1_ExamenPractic/*
 PBP_RA2_ExamenPractic/*
