@@ -39,7 +39,7 @@ nom usuaris.txt
 usuaris.txt
 
 # Fitxers Python
-__pycache__/*
+*__pycache__
 
 ## Fitxers examens
 PBP_RA1_ExamenPractic/*
