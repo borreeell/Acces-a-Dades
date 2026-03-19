@@ -2,8 +2,11 @@ import tkinter as tk
 from tkinter import messagebox
 from ui.styles import COLORS, FONTS
 
-
+# Components personalitzats per a la UI
 class StyledButton(tk.Button):
+    """
+    Botó personalitzat amb estils i efectes de hover.
+    """
     def __init__(self, parent, text, command=None, variant="primary", **kwargs):
         color = COLORS["btn_primary"] if variant == "primary" else COLORS["btn_danger"]
         hover = COLORS["btn_hover"]   if variant == "primary" else "#922b21"
@@ -20,6 +23,9 @@ class StyledButton(tk.Button):
 
 
 class StyledEntry(tk.Entry):
+    """
+    Entrada de text personalitzada amb placeholder.
+    """
     def __init__(self, parent, placeholder="", **kwargs):
         super().__init__(
             parent,
@@ -58,6 +64,9 @@ class StyledEntry(tk.Entry):
 
 
 class SortableHeader(tk.Frame):
+    """
+    Capçalera ordenable per a la llista de jugadors.
+    """
     CAMPS = [
         ("nom",    "Nom",    20),
         ("copes",  "Copes",   8),
@@ -114,6 +123,9 @@ class SortableHeader(tk.Frame):
 
 
 class EditDialog(tk.Toplevel):
+    """
+    Diàleg modal per editar un jugador.
+    """
     def __init__(self, parent, jugador, on_save_callback):
         super().__init__(parent)
         self.jugador  = jugador

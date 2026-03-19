@@ -1,3 +1,8 @@
+"""
+Estils de la interfície d'usuari.
+Defineix colors, fonts i la mida de la finestra.
+"""
+
 # Paleta de colors inspirada en Clash of Clans
 COLORS = {
     "bg_primary":    "#1a1a2e",   # Fons fosc blau

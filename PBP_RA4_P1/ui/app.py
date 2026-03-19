@@ -13,6 +13,10 @@ from models import Jugador
 
 
 class App(tk.Tk):
+    """
+    Classe principal de l'aplicació.
+    Gestiona la UI.
+    """
     def __init__(self):
         super().__init__()
         self.session     = get_session()
@@ -31,18 +35,23 @@ class App(tk.Tk):
     # ── Construcció UI ──────────────────────────────────────────────
 
     def _build_ui(self):
+        """
+        Construeix la UI.
+        """
         self._build_header()
         self._build_search_bar()
         self._build_list_panel()
         self._build_form_panel()
         self._build_status_bar()
 
+    # Construeix el header amb botons d'ordenació
     def _build_header(self):
         tk.Label(
             self, text="⚔️  Clash — Inventari de Jugadors",
             font=FONTS["title"], bg=COLORS["bg_primary"], fg=COLORS["gold"]
         ).pack(pady=(16, 2))
 
+    # Construeix la barra de cerca
     def _build_search_bar(self):
         bar = tk.Frame(self, bg=COLORS["bg_primary"])
         bar.pack(fill="x", padx=20, pady=(4, 0))
@@ -140,6 +149,9 @@ class App(tk.Tk):
     # ── CRUD ────────────────────────────────────────────────────────
 
     def _actualitzar_llista(self):
+        """
+        Actualitza la llista de jugadors mostrada a la interfície.
+        """
         cerca = self.entry_cerca.get_value()
         jugadors = obtenir_jugadors(
             self.session,

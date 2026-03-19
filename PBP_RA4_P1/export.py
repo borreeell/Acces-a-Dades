@@ -5,6 +5,11 @@ from models import Jugador
 
 
 def exportar_csv(jugadors: list[Jugador]) -> None:
+    """
+    Exporta la llista de jugadors a un fitxer CSV.
+
+    Mostra un diàleg per seleccionar la ruta del fitxer i exporta les dades.
+    """
     if not jugadors:
         messagebox.showwarning("Exportar", "No hi ha jugadors per exportar.")
         return
