@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clash>
+    <versio>1.0</versio>
+    <jugador id="1">
+        <nom>Vini Jr</nom>
+        <copes>0</copes>
+        <nivell>1</nivell>
+        <carta idCarta="1">
+            <nomCarta>Balon de playa</nomCarta>
+            <nivellCarta>14</nivellCarta>
+            <raresa>llegendaria</raresa>
+        </carta>
+        <carta idCarta="2">
+            <nomCarta>Drac de foc</nomCarta>
+            <nivellCarta>13</nivellCarta>
+            <raresa>comuna</raresa>
+        </carta>
+        <carta idCarta="3">
+            <nomCarta>Guerrer fosc</nomCarta>
+            <nivellCarta>12</nivellCarta>
+            <raresa>heroi</raresa>
+        </carta>
+    </jugador>
+    <jugador id="2">
+        <nom>Arbeloa</nom>
+        <copes>0</copes>
+        <nivell>1</nivell>
+        <carta idCarta="4">
+            <nomCarta>Cono</nomCarta>
+            <nivellCarta>14</nivellCarta>
+            <raresa>rara</raresa>
+        </carta>
+        <carta idCarta="5">
+            <nomCarta>Albacete</nomCarta>
+            <nivellCarta>20</nivellCarta>
+            <raresa>rara</raresa>
+        </carta>
+        <carta idCarta="6">
+            <nomCarta>Caballer daurat</nomCarta>
+            <nivellCarta>14</nivellCarta>
+            <raresa>legendaria</raresa>
+        </carta>
+    </jugador>
+    <jugador id="3">
+        <nom>player1</nom>
+        <copes>1200</copes>
+        <nivell>13</nivell>
+        <carta idCarta="7">
+            <nomCarta>Tormenta</nomCarta>
+            <nivellCarta>1</nivellCarta>
+            <raresa>comuna</raresa>
+        </carta>
+        <carta idCarta="8">
+            <nomCarta>Vini mono</nomCarta>
+            <nivellCarta>10</nivellCarta>
+            <raresa>epica</raresa>
+        </carta>
+        <carta idCarta="9">
+            <nomCarta>Tempesta elèctrica</nomCarta>
+            <nivellCarta>1</nivellCarta>
+            <raresa>llegendaria</raresa>
+        </carta>
+    </jugador>
+    <jugador id="quatre">
+        <nom>player2</nom>
+        <copes>500</copes>
+        <nivell>5</nivell>
+        <carta idCarta="10">
+            <nomCarta>Arquer fantasma</nomCarta>
+            <nivellCarta>5</nivellCarta>
+            <raresa>comuna</raresa>
+        </carta>
+        <carta idCarta="11">
+            <nomCarta>Golem de pedra</nomCarta>
+            <nivellCarta>6</nivellCarta>
+            <raresa>rara</raresa>
+        </carta>
+        <carta idCarta="12">
+            <nomCarta>Bruixa nocturna</nomCarta>
+            <nivellCarta>7</nivellCarta>
+            <raresa>epica</raresa>
+        </carta>
+    </jugador>
+    <jugador id="5">
+        <nom>player3</nom>
+        <copes>800</copes>
+        <nivell>6</nivell>
+        <carta idCarta="13">
+            <nomCarta>Mini pekka</nomCarta>
+            <nivellCarta>6</nivellCarta>
+            <raresa>comuna</raresa>
+        </carta>
+        <carta idCarta="14">
+            <nomCarta>Globus bombarder</nomCarta>
+            <nivellCarta>7</nivellCarta>
+            <raresa>rara</raresa>
+        </carta>
+        <carta idCarta="15">
+            <nomcarta>Espurna màgica</nomcarta>
+            <nivellCarta>8</nivellCarta>
+            <raresa>epica</raresa>
+        </carta>
+    </jugador>
+</clash>

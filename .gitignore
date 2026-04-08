@@ -27,21 +27,13 @@
 hs_err_pid*
 replay_pid*
 
-# arxius de les execucions
-## P1_RA1
 directori/*
 arxiu-terminal.txt
 arxiu.txt
 arxiuPdf.pdf
-
-## P2_RA1
 nom usuaris.txt
 usuaris.txt
-
-# Fitxers Python
 *__pycache__
-
-## Fitxers examens
 PBP_RA1_ExamenPractic/*
 PBP_RA2_ExamenPractic/*
 /PBP_RA3_P1/dist/
