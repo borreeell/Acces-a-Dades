@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/D:/AluCiclesGS1/PBP/0486%20-%20Acces%20a%20dades/NetBeans/PBP_RA5_P3/clash_1.xsd" uri="xml-resources/jaxb/clash/clash_1.xsd"/>
+</catalog>
