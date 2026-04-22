@@ -1,10 +1,4 @@
 <?xml version="1.0"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-
 <xs:schema version="1.0"
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified">
@@ -31,6 +25,7 @@ and open the template in the editor.
                 </xs:simpleType>
             </xs:element>
             <xs:element name="carta" maxOccurs="unbounded" type="cartaType" />
+            <xs:element name="clan" type="clanType" minOccurs="0" maxOccurs="1" />
         </xs:sequence>
         <xs:attribute name="id" type="xs:integer" use="required"/>
     </xs:complexType>
@@ -53,6 +48,8 @@ and open the template in the editor.
                         <xs:enumeration value="rara"/>
                         <xs:enumeration value="epica"/>
                         <xs:enumeration value="llegendaria"/>
+                        <xs:enumeration value="especial"/>
+                        <xs:enumeration value="campio"/>
                         <xs:enumeration value="heroi"/>
                     </xs:restriction>
                 </xs:simpleType>
@@ -60,4 +57,22 @@ and open the template in the editor.
         </xs:sequence>
         <xs:attribute name="idCart" type="xs:integer" use="required"/>
     </xs:complexType>
+
+    <!-- NOU TIPUS clanType -->
+    <xs:complexType name="clanType">
+        <xs:sequence>
+            <xs:element name="nomClan" type="xs:string"/>
+            <xs:element name="copesClan" type="xs:integer"/>
+            <xs:element name="tipusClan">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="privat"/>
+                        <xs:enumeration value="public"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="idClan" type="xs:integer" use="required"/>
+    </xs:complexType>
+
 </xs:schema>

@@ -5,6 +5,11 @@
         <nom>Xavier</nom>
         <copes>5603</copes>
         <nivell>14</nivell>
+        <clan idClan="1">
+            <nomClan>Dragons</nomClan>
+            <copesClan>45000</copesClan>
+            <tipusClan>public</tipusClan>
+        </clan>
         <carta idCart="1">
             <nomcart>Gigante</nomcart>
             <nivellcart>13</nivellcart>
@@ -70,6 +75,11 @@
         <nom>Jordi</nom>
         <copes>5334</copes>
         <nivell>14</nivell>
+        <clan idClan="2">
+            <nomClan>6/7 kings</nomClan>
+            <copesClan>5000</copesClan>
+            <tipusClan>privat</tipusClan>
+        </clan>
         <carta idCart="13">
             <nomcart>Gigante</nomcart>
             <nivellcart>13</nivellcart>
@@ -135,6 +145,11 @@
         <nom>Marc</nom>
         <copes>4454</copes>
         <nivell>13</nivell>
+        <clan idClan="3">
+            <nomClan>ViniClan</nomClan>
+            <copesClan>1</copesClan>
+            <tipusClan>privat</tipusClan>
+        </clan>
         <carta idCart="25">
             <nomcart>Gigante</nomcart>
             <nivellcart>13</nivellcart>
@@ -200,6 +215,11 @@
         <nom>Toni</nom>
         <copes>5544</copes>
         <nivell>14</nivell>
+        <clan idClan="1">
+            <nomClan>Dragons</nomClan>
+            <copesClan>45000</copesClan>
+            <tipusClan>public</tipusClan>
+        </clan>
         <carta idCart="36">
             <nomcart>Ariete de batalla</nomcart>
             <nivellcart>14</nivellcart>
@@ -265,6 +285,11 @@
         <nom>Sheila</nom>
         <copes>4988</copes>
         <nivell>13</nivell>
+        <clan idClan="1">
+            <nomClan>Dragons</nomClan>
+            <copesClan>45000</copesClan>
+            <tipusClan>public</tipusClan>
+        </clan>
         <carta idCart="48">
             <nomcart>Tornado</nomcart>
             <nivellcart>13</nivellcart>
@@ -330,6 +355,11 @@
         <nom>Pau</nom>
         <copes>3223</copes>
         <nivell>11</nivell>
+        <clan idClan="1">
+            <nomClan>Dragons</nomClan>
+            <copesClan>45000</copesClan>
+            <tipusClan>public</tipusClan>
+        </clan>
         <carta idCart="60">
             <nomcart>Mago</nomcart>
             <nivellcart>12</nivellcart>
